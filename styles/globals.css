@@ -3,25 +3,67 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+    --primary: #fdf8f0;
+    --secondary: #f0122d;
+    /* --zalando: #34d27b; */
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+        rgb(var(--background-start-rgb));
+}
+.background-gradient-slide-color {
+    background: linear-gradient(to left, var(--primary) 50%, var(--secondary) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    margin-right: 10px;
+    transition: all 0.5s ease;
+}
+.background-gradient-slide-color:hover {
+    background-position: left bottom;
+    color: var(--primary);
+}
+.underline-slide {
+    position: relative;
+}
+
+.underline-slide::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: currentColor;
+    transition: all 1s linear;
+    background: linear-gradient(to left, var(--primary) 50%, #1a1a1a 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    margin-right: 10px;
+    transition: all 0.5s ease;
+}
+
+.underline-slide:hover::after {
+    background-position: left bottom;
+    color: var(--primary);
+}
+
+.scrollbar_hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar_hidden::-webkit-scrollbar {
+    display: none;
 }
