@@ -9,16 +9,15 @@ import {
     TwitterIcon,
 } from '@/components/UI/Icons';
 import Head from 'next/head';
-import {ReactNode, useRef, useState} from 'react';
+import {Fragment, ReactNode, useEffect, useRef, useState} from 'react';
 import {AnimatePresence, motion} from 'framer-motion';
 import ProjectDetail from '@/components/ProjectDetail';
 import {Portal} from '@/components/UI/Portal';
 import Layout from '@/components/Layout';
 import {useFollowPointer} from '@/components/hook/UseFollowPointer';
-import Grid from '@/components/Grid';
-import useDeviceSize from '@/components/hook/useDeviceSize';
 import ProjectMoreInfo from '@/components/ProjectMoreInfo';
-// import {InferGetServerSidePropsType} from 'next';
+import useDeviceSize from '@/components/hook/useDeviceSize';
+import ErrorPageWithWidth from '@/components/ErrorPageWithWidth';
 
 interface IWrapper {
     children: ReactNode;
@@ -32,7 +31,7 @@ interface ICustomLink {
 const MotionLink: React.FC<ICustomLink> = ({href, children}) => {
     return (
         <motion.a
-            className="w-6 mx-3 sm:mx-1"
+            className="w-6 space-x-1 md:space-x-3"
             href={href}
             target={'_blank'}
             whileHover={{y: -2}}
@@ -43,18 +42,16 @@ const MotionLink: React.FC<ICustomLink> = ({href, children}) => {
 };
 
 const Wrapper: React.FC<IWrapper> = ({children, className}) => {
-    return <div className="flex justify-between items-center p-8 lg:p-12">{children}</div>;
+    return <div className={`flex  p-8 lg:p-12 ${className}`}>{children}</div>;
 };
 const WrapperIcons: React.FC<IWrapper> = ({children, className}) => {
     return (
-        <div className="hidden md:flex md:items-center md:justify-between md:space-x-3 relative z-[1]">
+        <div
+            className={`absolute bottom-0 left-0 items-end m-8 h-full flex justify-between  space-x-3 md:relative md:items-center md:m-0 z-[1] ${className}`}>
             {children}
         </div>
     );
 };
-// {
-//     dataFromServer,
-// }: InferGetServerSidePropsType<typeof getServerSideProps>
 export default function Home() {
     const [data, setData] = useState<IProjectData>();
     const [dataMoreInfo, setDataMoreInfo] = useState<string[]>();
@@ -63,40 +60,32 @@ export default function Home() {
     const ref = useRef<any>(null);
     const {x, y} = useFollowPointer(ref);
     const [width, height] = useDeviceSize();
-    console.log('detailOpen: ' + detailOpen);
 
     return (
-        <>
-            {/* {!detailOpen && width > 820 ? <Grid /> : null} */}
-
-            <div className="overflow-hidden max-h-screen max-w-screen">
+        <Fragment>
+            {/* <div className="hidden md:block">
+                <Grid />
+            </div> */}
+            <div className="hidden xs:block overflow-hidden max-h-screen max-w-screen ">
                 <Layout>
-                    <div className="py-16">
+                    <div className="py-16 flex flex-col justify-between h-full">
                         <Head>
                             <title>Hung Nguyen Quang Portfolio</title>
                             <meta name="description" content="any description" />
                         </Head>
-                        <Wrapper>
+                        <Wrapper className="justify-between">
                             <About />
-                            <WrapperIcons>
-                                <MotionLink href="">
-                                    <GithubIcon />
-                                </MotionLink>
-                                <MotionLink href="">
-                                    <EmailIcon className="w-6" />
-                                </MotionLink>
-                            </WrapperIcons>
                         </Wrapper>
-                        <Wrapper>
+                        <Wrapper className="justify-end md:justify-between ">
                             <WrapperIcons>
-                                <MotionLink href="">
-                                    <TwitterIcon className="w-6" />
-                                </MotionLink>
-                                <MotionLink href="">
+                                <MotionLink href="https://www.linkedin.com/in/hung-nguyen-quang-9046aa199/">
                                     <LinkedInIcon className="w-6" />
                                 </MotionLink>
-                                <MotionLink href="">
-                                    <PinterestIcon className="w-6" />
+                                <MotionLink href="https://github.com/NgQHung">
+                                    <GithubIcon />
+                                </MotionLink>
+                                <MotionLink href="mailto:hunghunghung273@gmail.com">
+                                    <EmailIcon className="w-6" />
                                 </MotionLink>
                             </WrapperIcons>
                             <Projects
@@ -181,12 +170,7 @@ export default function Home() {
                     <div className="w-2 h-2 rounded-full bg-secondary" />
                 </motion.div>
             </div>
-        </>
+            <ErrorPageWithWidth />
+        </Fragment>
     );
 }
-
-// export async function getServerSideProps() {
-//     return {
-//         dataFromServer: {}, // will be passed to the page component as props
-//     };
-// }

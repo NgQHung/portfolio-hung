@@ -7,7 +7,7 @@ const BgGradient = () => {
 const About = () => {
     return (
         <div className="max-w-[400px] max-h-[225px] font-Montserrat tracking-wide space-y-2 relative z-[1]">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl">Hung Nguyen Quang</h1>
+            <h1 className="text-4xl">Hung Nguyen Quang</h1>
             <h2 className="font-bold">Developer</h2>
             {/* <div className="sm:text-[10px] md:text-xs font-medium"> */}
             <p className="text-xs font-medium">

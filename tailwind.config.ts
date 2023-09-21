@@ -20,6 +20,9 @@ const config: Config = {
             backgroundColor: {
                 backdrop: 'rgba(0, 0, 0, 0.8)',
             },
+            screens: {
+                xs: '500px',
+            },
         },
     },
     plugins: [],

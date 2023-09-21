@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useCallback, useEffect, useRef} from 'react';
 import {LeftArrow} from './UI/Icons';
 import {projectData} from './data';
 import {motion} from 'framer-motion';
@@ -38,7 +38,6 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
 
     return (
         <li
-            // key={key}
             className="flex items-center cursor-pointer"
             onMouseEnter={mouseEnterHandler}
             onMouseLeave={mouseLeaveHandler}
@@ -52,7 +51,8 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
                     transition: {
                         type: 'spring',
                     },
-                }}>
+                }}
+                className="hidden lg:inline">
                 <LeftArrow className="w-5 mr-5 inline-block font-bold " />
             </motion.span>
             <motion.span initial={{opacity: 1}} whileHover={{opacity: 0.7}}>
@@ -65,7 +65,7 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
 const TitleProjects = () => {
     return (
         <h1
-            className="text-2xl md:text-3xl lg:text-4xl text-bold text-right flex justify-end items-center
+            className="text-4xl text-bold text-right flex justify-end items-center
              border-b-2 border-solid border-black ">
             <div className="grow flex justify-end">
                 <div className="w-4 h-4 bg-black mr-3 " />
@@ -77,7 +77,7 @@ const TitleProjects = () => {
 
 const Projects: React.FC<IProjects> = ({setData, setDetailOpen, setDataMoreInfo}) => {
     return (
-        <div className=" max-h-[225px] font-Montserrat tracking-wide space-y-2 p-8 lg:p-12 relative z-[1]">
+        <div className=" max-h-[225px] font-Montserrat tracking-wide space-y-2  relative z-[1]">
             <TitleProjects />
             <ul className="flex flex-col justify-center items-end space-y-1">
                 {projectData.map((project, index) => (
