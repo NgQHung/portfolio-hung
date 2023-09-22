@@ -1,13 +1,28 @@
-import React from 'react';
-import {motion} from 'framer-motion';
+import React, {Fragment, useEffect, useState} from 'react';
+import {AnimatedButtonHover} from './UI/AnimatedButtonHover';
+import TerminalTextEffect from './TerminalTextEffect';
 
-const BgGradient = () => {
-    return <span className="bg-"></span>;
-};
+const text = 'Hung Nguyen Quang';
+
 const About = () => {
     return (
-        <div className="max-w-[400px] max-h-[225px] font-Montserrat tracking-wide space-y-2 relative z-[1]">
-            <h1 className="text-4xl">Hung Nguyen Quang</h1>
+        <div className="max-w-[450px] max-h-[225px] font-Montserrat tracking-wide space-y-3 relative z-[1]">
+            <h1 className="text-4xl relative">
+                {/* {text.split(' ').map((word, index) => (
+                    <Fragment key={word + '-' + index}>
+                        {word.split('').map((wrd, index) => (
+                            <span
+                                style={{animationDelay: index / 5 + 's'}}
+                                className={`relative inline-block uppercase animate-wiggle wiggle `}
+                                key={wrd + '-' + index}>
+                                {wrd}
+                            </span>
+                        ))}
+                        &nbsp;
+                    </Fragment>
+                ))} */}
+                <TerminalTextEffect />
+            </h1>
             <h2 className="font-bold">Developer</h2>
             {/* <div className="sm:text-[10px] md:text-xs font-medium"> */}
             <p className="text-xs font-medium">
@@ -29,13 +44,10 @@ const About = () => {
                     any team.
                 </p> */}
             {/* </div> */}
-            <button
-                className="border border-solid border-secondary rounded-md 
-            text-secondary background-gradient-slide-color 
-            ">
-                {/* <motion.span /> */}
-                <span className="p-2">View My Profile</span>
-            </button>
+
+            <div className="mt-4 cursor-pointer">
+                <AnimatedButtonHover title="View My Profile" />
+            </div>
         </div>
     );
 };

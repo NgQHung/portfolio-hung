@@ -401,7 +401,7 @@ export const WebsiteIcon: React.FC<IIcons> = ({className, ...rest}) => (
     </svg>
 );
 export const CloseIcon: React.FC<IIcons> = ({className, ...rest}) => (
-    <button className={`fixed top-0 left-[14%] z-[5] p-4 ${className}`}>
+    <button className={`sticky top-0 left-0 z-[5] p-4 ${className}`}>
         <span
             className={`bg-black dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm
                             rotate-45 translate-y-1`}></span>

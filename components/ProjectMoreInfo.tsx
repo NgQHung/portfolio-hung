@@ -10,14 +10,15 @@ interface IProjectMoreInfo {
 const ProjectMoreInfo: React.FC<IProjectMoreInfo> = (props) => {
     return (
         <>
-            <div onClick={() => props.setMoreInfoOpen(false)}>
-                <CloseIcon />
-            </div>
             <div
-                className="z-[4] fixed top-0 h-screen overflow-scroll px-[100px] 
+                className="z-[4] fixed top-0 h-screen overflow-scroll  
             left-1/2 translate-x-[-50%] w-[800px] scrollbar_hidden bg-[#f3f2f9] 
             ">
-                <ul className="flex flex-col justify-between items-center space-y-10 ">
+                <div className="hover:opacity-70" onClick={() => props.setMoreInfoOpen(false)}>
+                    <CloseIcon />
+                </div>
+
+                <ul className="flex flex-col justify-between items-center space-y-10 px-[100px]">
                     {props.dataMoreInfo.map((image, index) => (
                         <li key={image + index}>
                             {

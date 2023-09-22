@@ -1,6 +1,7 @@
 import About from '@/components/About';
-import Navbar from '@/components/Navbar';
 import Projects from '@/components/Projects';
+import styled from '@emotion/styled';
+
 import {
     EmailIcon,
     GithubIcon,
@@ -16,8 +17,10 @@ import {Portal} from '@/components/UI/Portal';
 import Layout from '@/components/Layout';
 import {useFollowPointer} from '@/components/hook/UseFollowPointer';
 import ProjectMoreInfo from '@/components/ProjectMoreInfo';
-import useDeviceSize from '@/components/hook/useDeviceSize';
 import ErrorPageWithWidth from '@/components/ErrorPageWithWidth';
+import BouncingBall from '@/components/UI/BouncingBall';
+import Runaway from '@/components/UI/Runaway';
+import AnimatedBackgroundText from '@/components/AnimatedBackgroundText';
 
 interface IWrapper {
     children: ReactNode;
@@ -42,7 +45,7 @@ const MotionLink: React.FC<ICustomLink> = ({href, children}) => {
 };
 
 const Wrapper: React.FC<IWrapper> = ({children, className}) => {
-    return <div className={`flex  p-8 lg:p-12 ${className}`}>{children}</div>;
+    return <div className={`flex items-start p-8 lg:p-12 ${className}`}>{children}</div>;
 };
 const WrapperIcons: React.FC<IWrapper> = ({children, className}) => {
     return (
@@ -59,22 +62,25 @@ export default function Home() {
     const [moreInfoOpen, setMoreInfoOpen] = useState<Boolean>(false);
     const ref = useRef<any>(null);
     const {x, y} = useFollowPointer(ref);
-    const [width, height] = useDeviceSize();
 
     return (
         <Fragment>
+            <Head>
+                <title>Hung Nguyen Quang Portfolio</title>
+                <meta name="description" content="any description" />
+            </Head>
             {/* <div className="hidden md:block">
                 <Grid />
             </div> */}
             <div className="hidden xs:block overflow-hidden max-h-screen max-w-screen ">
                 <Layout>
                     <div className="py-16 flex flex-col justify-between h-full">
-                        <Head>
-                            <title>Hung Nguyen Quang Portfolio</title>
-                            <meta name="description" content="any description" />
-                        </Head>
-                        <Wrapper className="justify-between">
+                        <Wrapper className="justify-between ">
                             <About />
+                            <AnimatedBackgroundText />
+                            {/* <div className="grow mx:0 lg:mx-40">
+                                <BouncingBall />
+                            </div> */}
                         </Wrapper>
                         <Wrapper className="justify-end md:justify-between ">
                             <WrapperIcons>
@@ -174,3 +180,29 @@ export default function Home() {
         </Fragment>
     );
 }
+
+const ContainerButton = styled.div`
+    height: 60px;
+    position: relative;
+    width: 100%;
+    display: block;
+`;
+
+const Button = styled.button<{state: number}>`
+    padding: 10px 20px;
+    background-color: slateblue;
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    border-radius: 2rem;
+    margin-top: 20px;
+    border: 1px slateblue solid;
+    text-transform: capitalize;
+    cursor: pointer;
+    outline: none;
+    white-space: nowrap;
+    transition: all 0.7s ease;
+    /* left: ${(props) =>
+        props.state === 1 ? '0px' : props.state === 2 ? '200px' : props.state === 3 ? '450px' : ''};
+    position: 'absolute'; */
+`;
