@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {MoonIcon, SunIcon} from './UI/Icons';
 import useThemeSwitcher from './hook/useThemeSwitcher';
 import {themeSwitcherActions} from '@/stores/ThemeSwitcher';
