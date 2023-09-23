@@ -25,21 +25,27 @@ const config: Config = {
                 xs: '500px',
             },
             animation: {
-                flip: 'flip 2s infinite',
+                flip: 'flip 0.5s ',
                 wiggle: 'wiggle 1.25s infinite',
             },
             keyframes: {
                 jump: {
-                    '33%': {
-                        'text-shadow': '0 60px #f37121, 0 150px #f2aaaa',
-                    },
-                    '50%': {
-                        transform: 'translate(0, 0) rotate(-4deg)',
-                        'text-shadow': '0 0px #8fc0a9, 0 0px #84a9ac',
-                    },
-                    '66.67%': {
-                        'text-shadow': '0 -60px #d54062, 0 -150px #8fc0a9',
-                    },
+                    // '33%': {
+                    //     'text-shadow': '0 60px #f37121, 0 150px #f2aaaa',
+                    // },
+                    // '50%': {
+                    //     transform: 'translate(0, 0) rotate(-4deg)',
+                    //     'text-shadow': '0 0px #8fc0a9, 0 0px #84a9ac',
+                    // },
+                    // '66.67%': {
+                    //     'text-shadow': '0 -60px #d54062, 0 -150px #8fc0a9',
+                    // },
+                    // '0%, 100%': {
+                    //     transform: 'translateY(1rem)',
+                    // },
+                    // '50%': {
+                    //     transform: 'translateY(calc(1rem * -1))',
+                    // },
                 },
                 flip: {
                     '0%,80%': {

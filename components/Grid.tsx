@@ -14,8 +14,9 @@ const Container = styled(motion.div)<{columns: number}>`
     display: grid;
     z-index: 0;
     grid-template-columns: repeat(${(props) => props.columns}, 1fr);
-    mask-image: radial-gradient(300px 300px, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4), transparent);
-    mask-repeat: no-repeat;
+    opacity: 0.1;
+    /* mask-image: radial-gradient(300px 300px, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4), transparent);
+    mask-repeat: no-repeat; */
 `;
 
 function Grid() {
@@ -23,16 +24,16 @@ function Grid() {
     const [rows, setRows] = useState(0);
     const [width, height] = useDeviceSize();
 
-    // mouse position
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-    // mouse position from center
-    const centerMouseX = useTransform<number, number>(mouseX, (newX) => {
-        return newX - width / 2;
-    });
-    const centerMouseY = useTransform<number, number>(mouseY, (newY) => {
-        return newY - height / 2;
-    });
+    // // mouse position
+    // const mouseX = useMotionValue(0);
+    // const mouseY = useMotionValue(0);
+    // // mouse position from center
+    // const centerMouseX = useTransform<number, number>(mouseX, (newX) => {
+    //     return newX - width / 2;
+    // });
+    // const centerMouseY = useTransform<number, number>(mouseY, (newY) => {
+    //     return newY - height / 2;
+    // });
 
     // determine rows and columns
     useEffect(() => {
@@ -55,26 +56,31 @@ function Grid() {
     }, []);
 
     // handle mouse move on document
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            // animate mouse x and y
-            animate(mouseX, e.clientX);
-            animate(mouseY, e.clientY);
-        };
-        // recalculate grid on resize
-        window.addEventListener('mousemove', handleMouseMove);
-        // cleanup
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
+    // useEffect(() => {
+    //     const handleMouseMove = (e: MouseEvent) => {
+    //         // animate mouse x and y
+    //         animate(mouseX, e.clientX);
+    //         animate(mouseY, e.clientY);
+    //     };
+    //     // recalculate grid on resize
+    //     window.addEventListener('mousemove', handleMouseMove);
+    //     // cleanup
+    //     return () => {
+    //         window.removeEventListener('mousemove', handleMouseMove);
+    //     };
+    // }, []);
 
-    const WebkitMaskPosition = useMotionTemplate`${centerMouseX}px ${centerMouseY}px`;
+    // const WebkitMaskPosition = useMotionTemplate`${centerMouseX}px ${centerMouseY}px`;
 
     return (
-        <Container columns={columns} style={{WebkitMaskPosition}}>
+        // <Container columns={columns} style={{WebkitMaskPosition}}>
+        //     {Array.from({length: columns * rows}).map((_, i) => (
+        //         <Cell key={i} mouseX={mouseX} mouseY={mouseY} />
+        //     ))}
+        // </Container>
+        <Container columns={columns}>
             {Array.from({length: columns * rows}).map((_, i) => (
-                <Cell key={i} mouseX={mouseX} mouseY={mouseY} />
+                <Cell key={i} />
             ))}
         </Container>
     );

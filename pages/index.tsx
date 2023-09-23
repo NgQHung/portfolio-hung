@@ -1,6 +1,5 @@
 import About from '@/components/About';
 import Projects from '@/components/Projects';
-import styled from '@emotion/styled';
 
 import {
     EmailIcon,
@@ -10,7 +9,7 @@ import {
     TwitterIcon,
 } from '@/components/UI/Icons';
 import Head from 'next/head';
-import {Fragment, ReactNode, useEffect, useRef, useState} from 'react';
+import {Fragment, ReactNode, useRef, useState} from 'react';
 import {AnimatePresence, motion} from 'framer-motion';
 import ProjectDetail from '@/components/ProjectDetail';
 import {Portal} from '@/components/UI/Portal';
@@ -18,9 +17,8 @@ import Layout from '@/components/Layout';
 import {useFollowPointer} from '@/components/hook/UseFollowPointer';
 import ProjectMoreInfo from '@/components/ProjectMoreInfo';
 import ErrorPageWithWidth from '@/components/ErrorPageWithWidth';
-import BouncingBall from '@/components/UI/BouncingBall';
-import Runaway from '@/components/UI/Runaway';
 import AnimatedBackgroundText from '@/components/AnimatedBackgroundText';
+import Grid from '@/components/Grid';
 
 interface IWrapper {
     children: ReactNode;
@@ -32,6 +30,7 @@ interface ICustomLink {
     href: string;
 }
 const MotionLink: React.FC<ICustomLink> = ({href, children}) => {
+    //  hover:animate-flip
     return (
         <motion.a
             className="w-6 space-x-1 md:space-x-3"
@@ -69,21 +68,18 @@ export default function Home() {
                 <title>Hung Nguyen Quang Portfolio</title>
                 <meta name="description" content="any description" />
             </Head>
-            {/* <div className="hidden md:block">
+            <div className="hidden md:block">
                 <Grid />
-            </div> */}
+            </div>
             <div className="hidden xs:block overflow-hidden max-h-screen max-w-screen ">
                 <Layout>
                     <div className="py-16 flex flex-col justify-between h-full">
                         <Wrapper className="justify-between ">
                             <About />
                             <AnimatedBackgroundText />
-                            {/* <div className="grow mx:0 lg:mx-40">
-                                <BouncingBall />
-                            </div> */}
                         </Wrapper>
                         <Wrapper className="justify-end md:justify-between ">
-                            <WrapperIcons>
+                            <WrapperIcons className="">
                                 <MotionLink href="https://www.linkedin.com/in/hung-nguyen-quang-9046aa199/">
                                     <LinkedInIcon className="w-6" />
                                 </MotionLink>
@@ -180,29 +176,3 @@ export default function Home() {
         </Fragment>
     );
 }
-
-const ContainerButton = styled.div`
-    height: 60px;
-    position: relative;
-    width: 100%;
-    display: block;
-`;
-
-const Button = styled.button<{state: number}>`
-    padding: 10px 20px;
-    background-color: slateblue;
-    color: white;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    border-radius: 2rem;
-    margin-top: 20px;
-    border: 1px slateblue solid;
-    text-transform: capitalize;
-    cursor: pointer;
-    outline: none;
-    white-space: nowrap;
-    transition: all 0.7s ease;
-    /* left: ${(props) =>
-        props.state === 1 ? '0px' : props.state === 2 ? '200px' : props.state === 3 ? '450px' : ''};
-    position: 'absolute'; */
-`;

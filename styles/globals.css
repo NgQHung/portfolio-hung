@@ -86,7 +86,7 @@ body {
     color: #fff;
 }
 @keyframes jump {
-    33% {
+    /* 33% {
         text-shadow: 0 60px #f37121, 0 160px #f2aaaa;
     }
     50% {
@@ -95,5 +95,12 @@ body {
     }
     66.67% {
         text-shadow: 0 -60px #d54062, 0 -160px #8fc0a9;
+    } */
+    0%,
+    100% {
+        transform: translateY(1rem);
+    }
+    50% {
+        transform: translateY(calc(1rem * -1));
     }
 }

@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React from 'react';
 import {AnimatedButtonHover} from './UI/AnimatedButtonHover';
 import TerminalTextEffect from './TerminalTextEffect';
 
@@ -8,24 +8,10 @@ const About = () => {
     return (
         <div className="max-w-[450px] max-h-[225px] font-Montserrat tracking-wide space-y-3 relative z-[1]">
             <h1 className="text-4xl relative">
-                {/* {text.split(' ').map((word, index) => (
-                    <Fragment key={word + '-' + index}>
-                        {word.split('').map((wrd, index) => (
-                            <span
-                                style={{animationDelay: index / 5 + 's'}}
-                                className={`relative inline-block uppercase animate-wiggle wiggle `}
-                                key={wrd + '-' + index}>
-                                {wrd}
-                            </span>
-                        ))}
-                        &nbsp;
-                    </Fragment>
-                ))} */}
                 <TerminalTextEffect />
             </h1>
-            <h2 className="font-bold">Developer</h2>
-            {/* <div className="sm:text-[10px] md:text-xs font-medium"> */}
-            <p className="text-xs font-medium">
+            <h2 className="font-bold text-xl">Developer</h2>
+            <p className="text-md font-medium">
                 Hi, I am Hung Nguyen Quang, 23 years old. I am currently a student of Unicorn
                 University, I am very confident in my knowledge of Software Development.
             </p>

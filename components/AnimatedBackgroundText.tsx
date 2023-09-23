@@ -27,7 +27,7 @@ const Container = styled.div`
 
 const AnimatedBackgroundText = () => {
     return (
-        <div className="w-screen  text-center">
+        <div className="w-screen absolute right-0 translate-x-[20%] lg:translate-x-[30%]    text-center">
             {Portfolio.split('').map((word, index) => (
                 <span
                     key={word + '-' + index}
