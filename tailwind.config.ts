@@ -25,6 +25,7 @@ const config: Config = {
             },
             screens: {
                 xs: '500px',
+                xss: '350px',
             },
             animation: {
                 flip: 'flip 0.5s ',

@@ -5,7 +5,7 @@ import React from 'react';
 
 const ErrorPageWithWidth = () => {
     return (
-        <div className=" xs:hidden h-screen w-screen flex flex-col space-y-5 justify-center items-center ">
+        <div className="xss:hidden h-screen w-screen flex flex-col space-y-5 justify-center items-center ">
             <div className="w-[50px]">
                 <Image
                     src="/repairing.png"
@@ -16,8 +16,8 @@ const ErrorPageWithWidth = () => {
                     className="w-full h-auto"
                 />
             </div>
-            <p className="w-[400px] text-center">
-                We only support on screens with a minimum width of <b>450px</b>, sorry for the
+            <p className="w-[300px] text-center">
+                We only support on screens with a minimum width of <b>350px</b>, sorry for the
                 inconvenience!
             </p>
         </div>

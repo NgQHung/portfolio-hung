@@ -8,11 +8,11 @@ import {useAppSelector} from './hook/useApp';
 const About = () => {
     return (
         <div className="max-w-[450px] max-h-[225px] font-Montserrat tracking-wide space-y-3 relative z-[1]">
-            <h1 className="text-4xl relative">
+            <h1 className="text-xl h-[50px] xs:h-[100px] xs:text-4xl relative ">
                 <TerminalTextEffect />
             </h1>
-            <h2 className="font-bold text-xl dark:text-primary">Developer</h2>
-            <p className="text-md font-medium dark:text-primary">
+            <h2 className="font-bold text-sm sm:text-xl text-black dark:text-primary">Developer</h2>
+            <p className="text-xs sm:text-base font-medium text-black dark:text-primary">
                 Hi, I am Hung Nguyen Quang, 23 years old. I am currently a student of Unicorn
                 University, I am very confident in my knowledge of Software Development.
             </p>
@@ -32,7 +32,7 @@ const About = () => {
                 </p> */}
             {/* </div> */}
 
-            <div className="mt-4 cursor-pointer">
+            <div className="mt-4 cursor-pointer ">
                 <AnimatedButtonHover title="View My Profile" />
             </div>
         </div>

@@ -39,7 +39,7 @@ const Wrapper: React.FC<IWrapper> = ({children, className}) => {
 const WrapperIcons: React.FC<IWrapper> = ({children, className}) => {
     return (
         <div
-            className={`absolute bottom-0 left-0 items-end m-8 h-full flex justify-between  space-x-3 md:relative md:items-center md:m-0 z-[1] ${className}`}>
+            className={`absolute bottom-0 left-0 items-end m-8  flex justify-between  space-x-3 md:relative md:items-center md:m-0 z-[1] ${className}`}>
             {children}
         </div>
     );
@@ -58,19 +58,21 @@ export default function Home() {
                 <title>Hung Nguyen Quang Portfolio</title>
                 <meta name="description" content="any description" />
             </Head>
-            <div className="hidden md:block">
+            <div className="hidden xss:block">
                 <Grid />
             </div>
-            <DarkLightButton />
+            <div className="hidden xss:block">
+                <DarkLightButton />
+            </div>
             {/* hidden xs:block */}
-            <div className=" overflow-hidden max-h-screen max-w-screen ">
+            <div className="hidden xss:block overflow-hidden max-h-screen max-w-screen ">
                 <Layout>
                     <div className="py-16 flex flex-col justify-between h-full">
                         <Wrapper className="justify-between ">
                             <About />
                             <AnimatedBackgroundText />
                         </Wrapper>
-                        <Wrapper className="justify-end md:justify-between ">
+                        <Wrapper className="justify-end items-end md:justify-between ">
                             <WrapperIcons className="hidden dark:flex">
                                 <ContainerLink href="https://www.linkedin.com/in/hung-nguyen-quang-9046aa199/">
                                     <LinkedInIcon color="none" className="w-6" />
@@ -177,7 +179,7 @@ export default function Home() {
                     <div className="w-2 h-2 rounded-full bg-secondary" />
                 </motion.div> */}
             </div>
-            {/* <ErrorPageWithWidth /> */}
+            <ErrorPageWithWidth />
         </Fragment>
     );
 }

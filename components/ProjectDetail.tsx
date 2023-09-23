@@ -53,14 +53,14 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
     return (
         //
         <div
-            className={`h-screen  top-0 right-0 w-[450px]  bg-primary absolute z-[3]  flex flex-col justify-between 
+            className={`h-screen top-0 right-0 w-[350px] xs:w-[450px]  bg-primary absolute z-[3]  flex flex-col justify-between 
             dark:bg-dark
             `}>
-            <div className="p-4 h-full   ">
+            <div className="p-4 h-full">
                 <div
                     onClick={() => setDetailOpen(false)}
                     className="flex justify-start items-center space-x-3 pb-3 border-b  border-solid max-h-8 
-                    cursor-pointer border-black dark:border-primary dark:text-primary">
+                    cursor-pointer border-black dark:border-primary dark:text-primary text-sm xs:text-base">
                     <span
                         className="border border-solid  rounded-full p-1
                     border-black dark:border-primary">
@@ -71,7 +71,7 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
                     </div>
                 </div>
                 <div className="mt-4 space-y-4 dark:text-primary">
-                    <div className="space-y-3">
+                    <div className="space-y-3 text-sm xs:text-base">
                         <b>{title}</b>
                         <ContainerImage color={color}>
                             <div className="w-full h-auto rounded-xl overflow-hidden">
@@ -86,13 +86,13 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
                             </div>
                         </ContainerImage>
                     </div>
-                    <div className="space-y-3 dark:text-primary">
+                    <div className="space-y-3 dark:text-primary text-sm xs:text-base">
                         <b>About</b>
-                        <p className="text-[14px]">{about}</p>
+                        <p className="text-xs xs:text-sm">{about}</p>
                     </div>
-                    <div className="space-y-3 dark:text-primary">
+                    <div className="space-y-3 dark:text-primary text-sm xs:text-base">
                         <b>Technologies</b>
-                        <div className="space-y-3 text-[14px] ">
+                        <div className="space-y-3 text-[14px] text-xs xs:text-sm ">
                             <Technologies
                                 color={color}
                                 field="Front end"
@@ -105,7 +105,7 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
                             />
                         </div>
                     </div>
-                    <div className="space-y-3 dark:text-primary">
+                    <div className="space-y-3 dark:text-primary text-sm xs:text-base">
                         <div className="flex items-center">
                             <WebsiteIcon
                                 color={isDark ? 'var(--primary)' : '#1a1a1a'}
@@ -116,7 +116,7 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
                         <Link
                             href={website}
                             target="_blank"
-                            className="text-[14px] underline hover:opacity-70">
+                            className="text-[14px] underline hover:opacity-70 text-xs xs:text-sm">
                             <span>{website}</span>
                         </Link>
                     </div>

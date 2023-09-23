@@ -21,7 +21,10 @@ const Container = styled.span`
 
 const AnimatedBackgroundText = () => {
     return (
-        <Container className="text-[25px] xs:text-[50px] sm:text-[100px] w-screen absolute top-[150px] sm:top-auto right-0 translate-x-[20%] lg:translate-x-[30%] text-center ">
+        <Container
+            className="text-[25px] xs:text-[40px] sm:text-[50px] md:text-[75px] lg:text-[100px] w-screen 
+        absolute top-[20px] sm:top-[10px] md:top-auto right-[-50px] sm:right-[-40px] md:right-0 translate-x-[20%] 
+        lg:translate-x-[30%] text-center ">
             {Portfolio.split('').map((word, index) => (
                 <span
                     key={word + '-' + index}

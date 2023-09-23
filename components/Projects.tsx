@@ -38,7 +38,7 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
 
     return (
         <li
-            className="flex items-center cursor-pointer"
+            className="flex items-center cursor-pointer text-xs sm:text-base"
             onMouseEnter={mouseEnterHandler}
             onMouseLeave={mouseLeaveHandler}
             onClick={() => clickHandler(project)}>
@@ -68,7 +68,7 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
 const TitleProjects = () => {
     return (
         <h1
-            className="text-4xl text-bold text-right flex justify-end items-center
+            className="text-xl xs:text-4xl text-bold text-right flex justify-end items-center
              border-b-2 border-solid border-black dark:border-primary dark:text-primary">
             <div className="grow flex justify-end">
                 <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />

@@ -84,21 +84,19 @@ const TerminalTextEffect = () => {
     }, [isDark]);
 
     return (
-        <div>
-            <ConsoleContainer>
-                <span id="text"></span>
-                <ConsoleUnderscore className="" id="console">
-                    &#95;
-                </ConsoleUnderscore>
-            </ConsoleContainer>
-        </div>
+        <ConsoleContainer>
+            <span id="text"></span>
+            <ConsoleUnderscore className="" id="console">
+                &#95;
+            </ConsoleUnderscore>
+        </ConsoleContainer>
     );
 };
 
 export default TerminalTextEffect;
 const ConsoleContainer = styled.div`
     font-family: Khula;
-    height: 100px;
+    /* height: 100px; */
 `;
 
 const ConsoleUnderscore = styled.div`

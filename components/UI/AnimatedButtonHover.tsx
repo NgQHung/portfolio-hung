@@ -25,7 +25,7 @@ export const AnimatedButtonHover: React.FC<IAnimatedButtonHover> = (props) => {
 
     return (
         <ContainerLink>
-            <ContainerButton>
+            <ContainerButton className="text-xs sm:text-base font-bold sm:font-[900] text-black dark:text-primary">
                 {/* {props.title.split(" ").} */}
                 {firstText
                     ? firstText.map((word, index) => {
@@ -94,10 +94,6 @@ const ContainerLink = styled.a`
 `;
 const ContainerButton = styled.span`
     position: relative;
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 900;
-    letter-spacing: 0.25em;
     text-transform: uppercase;
     vertical-align: middle;
 `;
