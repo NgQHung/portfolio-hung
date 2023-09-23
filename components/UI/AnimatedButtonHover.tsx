@@ -12,7 +12,6 @@ export const AnimatedButtonHover: React.FC<IAnimatedButtonHover> = (props) => {
     useEffect(() => {
         const filterRestText = async () => {
             const dividedText = props.title.split(' ').map((word) => {
-                // setFullText((prev) => [...prev, word]);
                 return word;
             });
 
@@ -33,7 +32,7 @@ export const AnimatedButtonHover: React.FC<IAnimatedButtonHover> = (props) => {
                           return (
                               <span
                                   key={word + '-' + index}
-                                  className="inline-block first:text-primary second_child">
+                                  className="inline-block  first:text-primary second_child dark:text-primary ">
                                   {word}
                               </span>
                           );
@@ -42,7 +41,9 @@ export const AnimatedButtonHover: React.FC<IAnimatedButtonHover> = (props) => {
                 {restText
                     ? restText.map((word, index) => {
                           return (
-                              <span key={word + '-' + index} className="inline-block ">
+                              <span
+                                  key={word + '-' + index}
+                                  className="inline-block dark:text-primary">
                                   &nbsp;{word}
                               </span>
                           );

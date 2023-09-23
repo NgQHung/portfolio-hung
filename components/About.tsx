@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {AnimatedButtonHover} from './UI/AnimatedButtonHover';
 import TerminalTextEffect from './TerminalTextEffect';
+import {useAppSelector} from './hook/useApp';
 
-const text = 'Hung Nguyen Quang';
+// const text = 'Hung Nguyen Quang';
 
 const About = () => {
     return (
@@ -10,8 +11,8 @@ const About = () => {
             <h1 className="text-4xl relative">
                 <TerminalTextEffect />
             </h1>
-            <h2 className="font-bold text-xl">Developer</h2>
-            <p className="text-md font-medium">
+            <h2 className="font-bold text-xl dark:text-primary">Developer</h2>
+            <p className="text-md font-medium dark:text-primary">
                 Hi, I am Hung Nguyen Quang, 23 years old. I am currently a student of Unicorn
                 University, I am very confident in my knowledge of Software Development.
             </p>

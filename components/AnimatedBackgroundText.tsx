@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 const Portfolio = 'Portfolio';
 
-const Container = styled.div`
+const Container = styled.span`
     width: 100vw;
     text-align: center;
     span {
@@ -15,28 +15,22 @@ const Container = styled.div`
         animation: jump 2s ease-in-out infinite;
         display: inline-block;
         font-family: 'Titan One', cursive;
-        color: #fff;
-
-        @for $i from 1 through 7 {
-            &:nth-child(#{$i}) {
-                animation-delay: 120ms * $i;
-            }
-        }
+        /* color: #fff; */
     }
 `;
 
 const AnimatedBackgroundText = () => {
     return (
-        <div className="w-screen absolute right-0 translate-x-[20%] lg:translate-x-[30%]    text-center">
+        <Container className="w-screen absolute right-0 translate-x-[20%] lg:translate-x-[30%] text-center ">
             {Portfolio.split('').map((word, index) => (
                 <span
                     key={word + '-' + index}
                     style={{animationDelay: index / 5 + 's'}}
-                    className="text-animation animate-jump">
+                    className="text-animation animate-jump text-secondary dark:text-primary">
                     {word}
                 </span>
             ))}
-        </div>
+        </Container>
     );
 };
 

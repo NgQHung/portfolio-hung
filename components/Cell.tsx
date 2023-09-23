@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 import {useEffect, useRef, useState} from 'react';
 import {motion, MotionValue, useTransform} from 'framer-motion';
+import {useAppSelector} from './hook/useApp';
 
 export const CELL_SIZE = 60;
 
-const Container = styled.div`
+const Container = styled.div<{color: string}>`
     width: ${CELL_SIZE}px;
     height: ${CELL_SIZE}px;
-    border: 1px dashed #555;
+    border: 1px dashed ${(props) => props.color};
     color: #777;
     margin: -1px;
     display: flex;
@@ -22,6 +23,8 @@ interface CellProps {
 }
 
 const Cell: React.FC<CellProps> = ({mouseX, mouseY}) => {
+    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
+
     // const [position, setPosition] = useState([0, 0]);
     // const ref = useRef<HTMLDivElement>(null);
 
@@ -45,7 +48,7 @@ const Cell: React.FC<CellProps> = ({mouseX, mouseY}) => {
 
     return (
         // ref={ref}
-        <Container>
+        <Container color={isDark ? 'var(--primary)' : '#555'}>
             {/* <motion.div style={{zIndex: 0, rotate: direction}}>→</motion.div> */}
             {/* <div>→</div> */}
         </Container>

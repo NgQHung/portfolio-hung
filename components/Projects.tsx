@@ -53,9 +53,12 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
                     },
                 }}
                 className="hidden lg:inline">
-                <LeftArrow className="w-5 mr-5 inline-block font-bold " />
+                <LeftArrow className="w-5 mr-5 inline-block font-bold dark:text-primary" />
             </motion.span>
-            <motion.span initial={{opacity: 1}} whileHover={{opacity: 0.7}}>
+            <motion.span
+                className="dark:text-primary"
+                initial={{opacity: 1}}
+                whileHover={{opacity: 0.7}}>
                 {title} <b>({year})</b>
             </motion.span>
         </li>
@@ -66,9 +69,9 @@ const TitleProjects = () => {
     return (
         <h1
             className="text-4xl text-bold text-right flex justify-end items-center
-             border-b-2 border-solid border-black ">
+             border-b-2 border-solid border-black dark:border-primary dark:text-primary">
             <div className="grow flex justify-end">
-                <div className="w-4 h-4 bg-black mr-3 " />
+                <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />
             </div>
             <span>Projects</span>
         </h1>

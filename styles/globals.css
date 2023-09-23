@@ -8,6 +8,7 @@
     --background-end-rgb: 255, 255, 255;
     --primary: #fdf8f0;
     --secondary: #f0122d;
+    --dark: #1a1a1a;
     /* --zalando: #34d27b; */
 }
 
@@ -70,20 +71,23 @@ body {
 .second_child:nth-child(2) {
     color: var(--primary);
 }
+.second_child_dark:nth-child(2) {
+    color: var(--dark);
+}
 .wiggle {
     animation-direction: alternate;
     animation-timing-function: steps(2, end);
 }
 .text-animation {
-    -webkit-text-stroke-width: 1.25px;
+    /* -webkit-text-stroke-width: 1.25px;
     -webkit-text-stroke-color: #000;
     font-size: 100px;
     text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
-    transform: translate(0, 100%) rotate(4deg);
+    transform: translate(0, 100%) rotate(4deg); */
     animation: jump 2s ease-in-out infinite;
-    display: inline-block;
+    /* display: inline-block;
     font-family: 'Titan One', cursive;
-    color: #fff;
+    color: #fff; */
 }
 @keyframes jump {
     /* 33% {

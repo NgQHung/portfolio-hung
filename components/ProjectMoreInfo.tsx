@@ -11,10 +11,17 @@ const ProjectMoreInfo: React.FC<IProjectMoreInfo> = (props) => {
     return (
         <>
             <div
-                className="z-[4] fixed top-0 h-screen overflow-scroll  
-            left-1/2 translate-x-[-50%] w-[800px] scrollbar_hidden bg-[#f3f2f9] 
-            ">
-                <div className="hover:opacity-70" onClick={() => props.setMoreInfoOpen(false)}>
+                className="top-[49px] absolute h-[calc(100vh-74px)] left-1/2 translate-x-[-49%]
+                w-[810px] z-[3] rounded-[2.5rem] bg-black rounded-br-3xl
+                dark:bg-primary"
+            />
+            <div
+                className="z-[3] fixed top-10 h-[calc(100vh-80px)] overflow-scroll left-1/2 translate-x-[-50%] 
+                w-[800px] scrollbar_hidden bg-primary dark:border dark:border-solid dark:border-primary 
+                rounded-3xl rounded-br-2xl shadow-2xl dark:bg-dark ">
+                <div
+                    className="hover:opacity-70 sticky top-0 left-0 z-[3]"
+                    onClick={() => props.setMoreInfoOpen(false)}>
                     <CloseIcon />
                 </div>
 

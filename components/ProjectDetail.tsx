@@ -5,6 +5,7 @@ import {motion, MotionValue, useTransform} from 'framer-motion';
 import {LeftArrow, LinkArrow, WebsiteIcon} from './UI/Icons';
 import Image from 'next/image';
 import Link from 'next/link';
+import {useAppSelector} from './hook/useApp';
 
 interface IProjectDetail {
     project: IProjectData;
@@ -16,20 +17,21 @@ interface IProjectDetail {
 interface ITechnologies {
     field: String;
     technologies: String[];
+    color: string;
 }
 
-const Technologies: React.FC<ITechnologies> = ({field, technologies}) => {
+const Technologies: React.FC<ITechnologies> = ({field, technologies, color}) => {
     const filteredTechnologies = [...technologies].slice(0, 3);
 
     return (
-        <div className="flex justify-start items-center space-x-2">
+        <div className="flex justify-start items-center space-x-2 text-black dark:text-primary">
             <span>{field}:</span>
             {filteredTechnologies.map((tech, index) => (
-                <span key={index} className="inline-block p-2 bg-gray-400 rounded-md ">
+                <ContainerTechnologies color={color} key={index}>
                     {tech}
-                </span>
+                </ContainerTechnologies>
             ))}
-            <span className="inline-block p-2 bg-gray-400 rounded-md ">Other...</span>
+            <ContainerTechnologies color={color}>Other...</ContainerTechnologies>
         </div>
     );
 };
@@ -42,6 +44,7 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
 }) => {
     const {title, about, image, source, technologies, website, year, color} = project;
     const projectDetailOpenHandler = () => {};
+    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
 
     const moreInfoOpenHandler = () => {
         setDetailOpen(false);
@@ -50,20 +53,24 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
     return (
         //
         <div
-            className={`h-screen  top-0 right-0 w-[450px]  bg-primary absolute z-[3]  flex flex-col justify-between `}>
+            className={`h-screen  top-0 right-0 w-[450px]  bg-primary absolute z-[3]  flex flex-col justify-between 
+            dark:bg-dark
+            `}>
             <div className="p-4 h-full   ">
                 <div
                     onClick={() => setDetailOpen(false)}
-                    className="flex justify-start items-center space-x-3 pb-3 border-b border-black border-solid max-h-8 
-                    cursor-pointer">
-                    <span className="border border-solid border-black rounded-full p-1">
+                    className="flex justify-start items-center space-x-3 pb-3 border-b  border-solid max-h-8 
+                    cursor-pointer border-black dark:border-primary dark:text-primary">
+                    <span
+                        className="border border-solid  rounded-full p-1
+                    border-black dark:border-primary">
                         <LeftArrow />
                     </span>
                     <div className="underline-slide font-semibold">
                         <span>Go Back</span>
                     </div>
                 </div>
-                <div className="mt-4 space-y-4">
+                <div className="mt-4 space-y-4 dark:text-primary">
                     <div className="space-y-3">
                         <b>{title}</b>
                         <ContainerImage color={color}>
@@ -79,20 +86,31 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
                             </div>
                         </ContainerImage>
                     </div>
-                    <div className="space-y-3 ">
+                    <div className="space-y-3 dark:text-primary">
                         <b>About</b>
                         <p className="text-[14px]">{about}</p>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-3 dark:text-primary">
                         <b>Technologies</b>
-                        <div className="space-y-3 text-[14px]">
-                            <Technologies field="Front end" technologies={technologies.fe} />
-                            <Technologies field="Back end" technologies={technologies.be} />
+                        <div className="space-y-3 text-[14px] ">
+                            <Technologies
+                                color={color}
+                                field="Front end"
+                                technologies={technologies.fe}
+                            />
+                            <Technologies
+                                color={color}
+                                field="Back end"
+                                technologies={technologies.be}
+                            />
                         </div>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-3 dark:text-primary">
                         <div className="flex items-center">
-                            <WebsiteIcon className="w-6 h-auto" />
+                            <WebsiteIcon
+                                color={isDark ? 'var(--primary)' : '#1a1a1a'}
+                                className="w-6 h-auto"
+                            />
                             <b>Website</b>
                         </div>
                         <Link
@@ -113,7 +131,10 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
                     </div> */}
                 </div>
             </div>
-            <ContainerMoreInfo color={color} onClick={moreInfoOpenHandler}>
+            <ContainerMoreInfo
+                className="text-black dark:text-primary"
+                color={color}
+                onClick={moreInfoOpenHandler}>
                 <button>More Info</button>
                 <LinkArrow className="w-6" />
             </ContainerMoreInfo>
@@ -145,4 +166,12 @@ const ContainerMoreInfo = styled.div<{color: string}>`
         opacity: 0.7;
         cursor: pointer;
     }
+`;
+
+const ContainerTechnologies = styled.span<{color: string}>`
+    display: inline-block;
+    padding: 8px;
+    background-color: ${(props) => props.color};
+    border-radius: 6px;
+    font-weight: 700;
 `;

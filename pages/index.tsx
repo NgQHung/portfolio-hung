@@ -1,15 +1,16 @@
 import About from '@/components/About';
 import Projects from '@/components/Projects';
+import styled from '@emotion/styled';
 
 import {
     EmailIcon,
     GithubIcon,
     LinkedInIcon,
-    PinterestIcon,
-    TwitterIcon,
+    // PinterestIcon,
+    // TwitterIcon,
 } from '@/components/UI/Icons';
 import Head from 'next/head';
-import {Fragment, ReactNode, useRef, useState} from 'react';
+import {Fragment, ReactNode, useEffect, useRef, useState} from 'react';
 import {AnimatePresence, motion} from 'framer-motion';
 import ProjectDetail from '@/components/ProjectDetail';
 import {Portal} from '@/components/UI/Portal';
@@ -19,6 +20,7 @@ import ProjectMoreInfo from '@/components/ProjectMoreInfo';
 import ErrorPageWithWidth from '@/components/ErrorPageWithWidth';
 import AnimatedBackgroundText from '@/components/AnimatedBackgroundText';
 import Grid from '@/components/Grid';
+import DarkLightButton from '@/components/DarkLightButton';
 
 interface IWrapper {
     children: ReactNode;
@@ -28,20 +30,8 @@ interface IWrapper {
 interface ICustomLink {
     children?: ReactNode;
     href: string;
+    className?: string;
 }
-const MotionLink: React.FC<ICustomLink> = ({href, children}) => {
-    //  hover:animate-flip
-    return (
-        <motion.a
-            className="w-6 space-x-1 md:space-x-3"
-            href={href}
-            target={'_blank'}
-            whileHover={{y: -2}}
-            whileTap={{scale: 0.9}}>
-            {children}
-        </motion.a>
-    );
-};
 
 const Wrapper: React.FC<IWrapper> = ({children, className}) => {
     return <div className={`flex items-start p-8 lg:p-12 ${className}`}>{children}</div>;
@@ -71,6 +61,8 @@ export default function Home() {
             <div className="hidden md:block">
                 <Grid />
             </div>
+            <DarkLightButton />
+
             <div className="hidden xs:block overflow-hidden max-h-screen max-w-screen ">
                 <Layout>
                     <div className="py-16 flex flex-col justify-between h-full">
@@ -79,15 +71,29 @@ export default function Home() {
                             <AnimatedBackgroundText />
                         </Wrapper>
                         <Wrapper className="justify-end md:justify-between ">
-                            <WrapperIcons className="">
+                            <WrapperIcons className="hidden dark:flex">
+                                <ContainerLink href="https://www.linkedin.com/in/hung-nguyen-quang-9046aa199/">
+                                    <LinkedInIcon color="none" className="w-6" />
+                                </ContainerLink>
+                                <ContainerLink href="https://github.com/NgQHung">
+                                    <GithubIcon color="#fff" className=" w-6 " />
+                                </ContainerLink>
+                                <ContainerLink href="mailto:hunghunghung273@gmail.com">
+                                    <EmailIcon color="#fff" className="w-6" />
+                                </ContainerLink>
+                            </WrapperIcons>
+                            <WrapperIcons className="block dark:hidden">
                                 <MotionLink href="https://www.linkedin.com/in/hung-nguyen-quang-9046aa199/">
-                                    <LinkedInIcon className="w-6" />
+                                    <LinkedInIcon color="#0A66C2" className="w-6" />
                                 </MotionLink>
                                 <MotionLink href="https://github.com/NgQHung">
-                                    <GithubIcon />
+                                    <GithubIcon color="currentColor" className=" w-6 " />
                                 </MotionLink>
                                 <MotionLink href="mailto:hunghunghung273@gmail.com">
-                                    <EmailIcon className="w-6" />
+                                    <EmailIcon
+                                        color="#1a1a1a"
+                                        className="w-6 border border-solid"
+                                    />
                                 </MotionLink>
                             </WrapperIcons>
                             <Projects
@@ -129,7 +135,6 @@ export default function Home() {
                         </div>
                     ) : null}
                 </AnimatePresence>
-
                 <AnimatePresence>
                     {dataMoreInfo && moreInfoOpen && !detailOpen ? (
                         <div className="relative z-[4]">
@@ -159,7 +164,7 @@ export default function Home() {
                         </div>
                     ) : null}
                 </AnimatePresence>
-                <motion.div
+                {/* <motion.div
                     ref={ref}
                     className="w-4 h-4 rounded-full border border-secondary flex justify-center items-center"
                     animate={{x, y}}
@@ -170,9 +175,58 @@ export default function Home() {
                         damping: 10,
                     }}>
                     <div className="w-2 h-2 rounded-full bg-secondary" />
-                </motion.div>
+                </motion.div> */}
             </div>
             <ErrorPageWithWidth />
         </Fragment>
     );
 }
+const ContainerLink = styled.a`
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 63px;
+    background: #333;
+    border-radius: 50%;
+    font-size: 30px;
+    color: #666;
+    transition: 0.5s;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #ffee10;
+        transition: 0.5s;
+        transform: scale(0.9);
+        z-index: -1;
+    }
+    &:hover::before {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #ffee10;
+    }
+    &:hover {
+        color: #ffee10;
+        box-shadow: 0 0 5px #ffee10;
+        text-shadow: 0 0 5px #ffee10;
+    }
+`;
+
+const MotionLink: React.FC<ICustomLink> = ({href, children, className}) => {
+    //  hover:animate-flip
+    return (
+        <motion.a
+            className={`w-6 space-x-1 md:space-x-3 ${className}`}
+            href={href}
+            target={'_blank'}
+            whileHover={{y: -2}}
+            whileTap={{scale: 0.9}}>
+            {children}
+        </motion.a>
+    );
+};

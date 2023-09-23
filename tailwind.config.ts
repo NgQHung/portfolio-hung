@@ -7,12 +7,14 @@ const config: Config = {
         './components/**/*.{js,ts,jsx,tsx,mdx}',
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
                 // #4A8BDF
                 primary: 'var(--primary)',
                 secondary: 'var(--secondary)',
+                dark: 'var(--dark)',
                 // zalando: 'var(--zalando)',
             },
             fontFamily: {
