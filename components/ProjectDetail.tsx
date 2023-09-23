@@ -44,7 +44,7 @@ const ProjectDetail: React.FC<IProjectDetail> = ({
 }) => {
     const {title, about, image, source, technologies, website, year, color} = project;
     const projectDetailOpenHandler = () => {};
-    const isDark = useAppSelector((state: any) => state.themeSwitcher.isDark);
+    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
 
     const moreInfoOpenHandler = () => {
         setDetailOpen(false);
