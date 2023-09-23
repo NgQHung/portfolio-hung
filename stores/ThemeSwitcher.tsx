@@ -1,6 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialValue = {
+interface InitialValue {
+    isDark: Boolean;
+}
+
+const initialValue: InitialValue = {
     isDark: false,
 };
 

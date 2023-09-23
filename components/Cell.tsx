@@ -23,7 +23,7 @@ interface CellProps {
 }
 
 const Cell: React.FC<CellProps> = ({mouseX, mouseY}) => {
-    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
+    const isDark = useAppSelector((state: any) => state.themeSwitcher.isDark);
 
     // const [position, setPosition] = useState([0, 0]);
     // const ref = useRef<HTMLDivElement>(null);

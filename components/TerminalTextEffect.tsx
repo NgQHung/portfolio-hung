@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styled from '@emotion/styled';
 import {useAppSelector} from './hook/useApp';
 
 const TerminalTextEffect = () => {
-    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
+    const isDark = useAppSelector((state: any) => state.themeSwitcher.isDark);
 
     useEffect(() => {
         let interval1: any;
