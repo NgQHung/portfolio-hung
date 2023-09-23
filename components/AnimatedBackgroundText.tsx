@@ -9,7 +9,7 @@ const Container = styled.span`
     span {
         -webkit-text-stroke-width: 1.25px;
         -webkit-text-stroke-color: #000;
-        font-size: 100px;
+        /* font-size: 100px; */
         text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
         transform: translate(0, 100%) rotate(4deg);
         animation: jump 2s ease-in-out infinite;
@@ -21,7 +21,7 @@ const Container = styled.span`
 
 const AnimatedBackgroundText = () => {
     return (
-        <Container className="w-screen absolute right-0 translate-x-[20%] lg:translate-x-[30%] text-center ">
+        <Container className="text-[25px] xs:text-[50px] sm:text-[100px] w-screen absolute top-[150px] sm:top-auto right-0 translate-x-[20%] lg:translate-x-[30%] text-center ">
             {Portfolio.split('').map((word, index) => (
                 <span
                     key={word + '-' + index}

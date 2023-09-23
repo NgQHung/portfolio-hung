@@ -62,8 +62,8 @@ export default function Home() {
                 <Grid />
             </div>
             <DarkLightButton />
-
-            <div className="hidden xs:block overflow-hidden max-h-screen max-w-screen ">
+            {/* hidden xs:block */}
+            <div className=" overflow-hidden max-h-screen max-w-screen ">
                 <Layout>
                     <div className="py-16 flex flex-col justify-between h-full">
                         <Wrapper className="justify-between ">
@@ -177,7 +177,7 @@ export default function Home() {
                     <div className="w-2 h-2 rounded-full bg-secondary" />
                 </motion.div> */}
             </div>
-            <ErrorPageWithWidth />
+            {/* <ErrorPageWithWidth /> */}
         </Fragment>
     );
 }
