@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react';
+import {useAppSelector} from './useApp';
 
 const useDeviceSize = () => {
+    // const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
+
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
 
@@ -10,6 +13,7 @@ const useDeviceSize = () => {
     };
 
     useEffect(() => {
+        // if (!isDark) return;
         // component is mounted and window is available
         handleWindowResize();
         window.addEventListener('resize', handleWindowResize);

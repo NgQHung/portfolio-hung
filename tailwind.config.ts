@@ -19,6 +19,7 @@ const config: Config = {
             },
             fontFamily: {
                 Montserrat: ['Montserrat', 'sans-serif'],
+                Khula: ['Khula'],
             },
             backgroundColor: {
                 backdrop: 'rgba(0, 0, 0, 0.8)',

@@ -17,7 +17,7 @@ const DarkLightButton = () => {
 
     return (
         <div
-            className="flex flex-col h-auto w-8 absolute bottom-20 left-4 dark:bg-primary z-[3] 
+            className="hidden xss:flex flex-col h-auto w-8 absolute bottom-20 left-4 dark:bg-primary z-[3] 
         dark:rounded-l-xl py-2">
             <button className="inline-block mb-5" onClick={() => setMode('dark')}>
                 <span

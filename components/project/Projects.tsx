@@ -1,6 +1,6 @@
 import React, {Fragment, useCallback, useEffect, useRef} from 'react';
-import {LeftArrow} from './UI/Icons';
-import {projectData} from './data';
+import {LeftArrow} from '../UI/Icons';
+import {projectData} from '../data';
 import {motion} from 'framer-motion';
 
 interface IProject {

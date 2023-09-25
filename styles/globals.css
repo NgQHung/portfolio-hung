@@ -79,11 +79,12 @@ body {
     animation-timing-function: steps(2, end);
 }
 .text-animation {
-    /* -webkit-text-stroke-width: 1.25px;
+    -webkit-text-stroke-width: 1.25px;
     -webkit-text-stroke-color: #000;
-    font-size: 100px;
+    /* font-size: 100px;
     text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
     transform: translate(0, 100%) rotate(4deg); */
+
     animation: jump 2s ease-in-out infinite;
     /* display: inline-block;
     font-family: 'Titan One', cursive;
@@ -106,5 +107,53 @@ body {
     }
     50% {
         transform: translateY(calc(1rem * -1));
+    }
+}
+
+.noise {
+    position: fixed;
+    z-index: 5000 !important;
+    top: -300%;
+    left: -150%;
+    height: 600%;
+    width: 600%;
+    animation: grain 7s steps(10) infinite;
+    background-image: url(https://res.cloudinary.com/dtbuhsktp/image/upload/v1691489836/noise_ku7yqo.png);
+    background-size: 200px;
+    background-repeat: repeat;
+    opacity: 0.25;
+    pointer-events: none;
+}
+@keyframes grain {
+    0%,
+    100% {
+        transform: translate(0);
+    }
+    10% {
+        transform: translate(-5%, -10%);
+    }
+    20% {
+        transform: translate(-15%, 5%);
+    }
+    30% {
+        transform: translate(7%, -25%);
+    }
+    40% {
+        transform: translate(-5%, 25%);
+    }
+    50% {
+        transform: translate(-15%, 10%);
+    }
+    60% {
+        transform: translate(15%);
+    }
+    70% {
+        transform: translateY(15%);
+    }
+    80% {
+        transform: translate(3%, 35%);
+    }
+    90% {
+        transform: translate(-10%, 10%);
     }
 }

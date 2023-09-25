@@ -4,8 +4,11 @@ import TerminalTextEffect from './TerminalTextEffect';
 import {useAppSelector} from './hook/useApp';
 
 // const text = 'Hung Nguyen Quang';
+interface IAbout {
+    setProfileOpen: (state: Boolean) => void;
+}
 
-const About = () => {
+const About: React.FC<IAbout> = (props) => {
     return (
         <div className="max-w-[450px] max-h-[225px] font-Montserrat tracking-wide space-y-3 relative z-[1]">
             <h1 className="text-xl h-[50px] xs:h-[100px] xs:text-4xl relative ">
@@ -32,7 +35,7 @@ const About = () => {
                 </p> */}
             {/* </div> */}
 
-            <div className="mt-4 cursor-pointer ">
+            <div onClick={() => props.setProfileOpen(true)} className="mt-4 cursor-pointer ">
                 <AnimatedButtonHover title="View My Profile" />
             </div>
         </div>

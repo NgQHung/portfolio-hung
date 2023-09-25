@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import styled from '@emotion/styled';
 import {useAppSelector} from './hook/useApp';
 
 const TerminalTextEffect = () => {
@@ -84,24 +83,13 @@ const TerminalTextEffect = () => {
     }, [isDark]);
 
     return (
-        <ConsoleContainer>
+        <div className=" font-Montserrat ">
             <span id="text"></span>
-            <ConsoleUnderscore className="" id="console">
+            <div className="inline-block relative top-[-0.14em] left-[10px]" id="console">
                 &#95;
-            </ConsoleUnderscore>
-        </ConsoleContainer>
+            </div>
+        </div>
     );
 };
 
 export default TerminalTextEffect;
-const ConsoleContainer = styled.div`
-    font-family: Khula;
-    /* height: 100px; */
-`;
-
-const ConsoleUnderscore = styled.div`
-    display: inline-block;
-    position: relative;
-    top: -0.14em;
-    left: 10px;
-`;

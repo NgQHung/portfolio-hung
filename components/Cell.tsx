@@ -26,7 +26,7 @@ const Cell: React.FC<CellProps> = ({mouseX, mouseY}) => {
     const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
 
     // const [position, setPosition] = useState([0, 0]);
-    // const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLDivElement>(null);
 
     // const direction = useTransform<number, number>([mouseX, mouseY], ([newX, newY]) => {
     //     const diffY = newY - position[1];
@@ -47,8 +47,8 @@ const Cell: React.FC<CellProps> = ({mouseX, mouseY}) => {
     // }, [ref.current]);
 
     return (
-        // ref={ref}
-        <Container color={isDark ? 'var(--primary)' : '#555'}>
+        //
+        <Container ref={ref} color={isDark ? 'var(--primary)' : '#555'}>
             {/* <motion.div style={{zIndex: 0, rotate: direction}}>→</motion.div> */}
             {/* <div>→</div> */}
         </Container>
