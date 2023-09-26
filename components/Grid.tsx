@@ -62,7 +62,6 @@ function Grid() {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
-    // console.log('')
 
     const WebkitMaskPosition = useMotionTemplate`${centerMouseX}px ${centerMouseY}px`;
 

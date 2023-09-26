@@ -19,10 +19,6 @@ const Runaway = () => {
     const handleMouseOver = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         var randX = randomNumber(-1, window.innerWidth - 153);
         var randY = randomNumber(289, -322);
-        // console.log('randX: ' + randX);
-        // console.log('randY: ' + randY);
-        // console.log('window.innerWidth: ' + (window.innerWidth - 53));
-        // console.log('window.innerHeight: ' + (window.innerWidth - 100));
 
         setPoint({randX, randY});
     };

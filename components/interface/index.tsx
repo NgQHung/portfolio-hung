@@ -15,3 +15,14 @@ interface IProjectData {
     source: string;
     year: string;
 }
+
+interface IExperienceData {
+    id: string;
+    time: String;
+    job: String;
+    company: String;
+    position: String;
+    about: String;
+    technologiesUsed: String[];
+    web: string;
+}

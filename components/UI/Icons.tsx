@@ -352,16 +352,17 @@ export const WebsiteIcon: React.FC<IIcons> = (props) => (
 export const CloseIcon: React.FC<IIcons> = (props) => (
     <button className={` p-4 ${props.className}`}>
         <span
-            className={`bg-black dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm
+            className={`bg-black  block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm
                             rotate-45 translate-y-1`}></span>
         <span
-            className={`bg-black dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 my-0.5 rounded-sm
+            className={`bg-black  block transition-all duration-300 ease-out h-0.5 w-6 my-0.5 rounded-sm
                             opacity-0`}></span>
         <span
-            className={`bg-black dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm
+            className={`bg-black  block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm
                             -rotate-45 -translate-y-1`}></span>
     </button>
 );
+
 // export const TwitterIcon: React.FC<IIcons> = (props) => (
 //     <svg
 //         xmlns="http://www.w3.org/2000/svg"

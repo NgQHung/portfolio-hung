@@ -3,13 +3,11 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import {useFollowPointer} from '@/components/hook/UseFollowPointer';
 
-import DarkLightButton from '@/components/DarkLightButton';
-// import Introduce from '@/components/Introduce';
 const DynamicIntroduce = dynamic(() => import('@/components/Introduce'));
 
 const DynamicAbout = dynamic(() => import('@/components/about/About'));
 const DynamicProjects = dynamic(() => import('@/components/project/Projects'));
-const DynamicProjectDetail = dynamic(() => import('@/components/project/ProjectDetail'));
+// const DynamicProjectDetail = dynamic(() => import('@/components/project/ProjectDetail'));
 const DynamicLayout = dynamic(() => import('@/components/Layout'));
 const DynamicProjectMoreInfo = dynamic(() => import('@/components/project/ProjectMoreInfo'));
 const DynamicErrorPageWithWidth = dynamic(() => import('@/components/ErrorPageWithWidth'));
@@ -18,7 +16,8 @@ const DynamicGrid = dynamic(() => import('@/components/Grid'));
 const DynamicDarkLightButton = dynamic(() => import('@/components/DarkLightButton'));
 const DynamicLinks = dynamic(() => import('@/components/links'));
 const DynamicProfile = dynamic(() => import('@/components/Profile'));
-
+const DynamicExperience = dynamic(() => import('@/components/Experience'));
+const DynamicNavbar = dynamic(() => import('@/components/Navbar'));
 interface IWrapper {
     children: ReactNode;
     className?: String;
@@ -26,14 +25,13 @@ interface IWrapper {
 
 export default function Home() {
     const [data, setData] = useState<IProjectData>();
+    const [experience, setExperience] = useState<IExperienceData>();
     const [dataMoreInfo, setDataMoreInfo] = useState<string[]>();
     const [profileOpen, setProfileOpen] = useState<Boolean>(false);
-    // const [modalActive, setModalActive] = useState<Boolean>(false);
     const [detailOpen, setDetailOpen] = useState<Boolean>(false);
     const [moreInfoOpen, setMoreInfoOpen] = useState<Boolean>(false);
     const ref = useRef<any>(null);
     const {x, y} = useFollowPointer(ref);
-    console.log('profile: ' + profileOpen);
 
     return (
         <Fragment>
@@ -43,21 +41,27 @@ export default function Home() {
             </Head>
             {/* <Grid /> */}
             {/* <Profile setProfileOpen={setProfileOpen} profileOpen={profileOpen} /> */}
-            <DarkLightButton />
+            <DynamicDarkLightButton />
             <div className="hidden xss:block overflow-hidden max-h-screen max-w-screen ">
                 <DynamicLayout>
-                    <Wrapper className="justify-between items-start py-16 px-8 lg:px-12 xl:px-16 lg:py-28 basis-[50%]">
+                    <Wrapper className="justify-between items-start py-16 px-8 lg:px-12 xl:px-16 lg:py-20 basis-[50%]">
                         <DynamicIntroduce setProfileOpen={setProfileOpen} />
+                        <DynamicNavbar />
                         <DynamicLinks />
                     </Wrapper>
-                    <Wrapper className=" grow pr-8 lg:px-12 xl:px-16  basis-[50%]">
-                        <div className="sticky overflow-scroll pt-28 top-0 right-0 h-full w-full scrollbar_hidden  space-y-10">
+                    <Wrapper className=" grow pr-8 lg:px-12 xl:px-16 py-16 lg:py-20  basis-[50%]">
+                        <div className="sticky overflow-scroll pt-16n lg:pt-20 top-0 right-0 h-full w-full scrollbar_hidden  ">
                             {/* <DynamicAnimatedBackgroundText /> */}
                             <DynamicAbout />
+                            <DynamicExperience
+                                // setDataMoreInfo={setDataMoreInfo}
+                                setExperience={setExperience}
+                                // setDetailOpen={setDetailOpen}
+                            />
                             <DynamicProjects
-                                setDataMoreInfo={setDataMoreInfo}
+                                // setDataMoreInfo={setDataMoreInfo}
                                 setData={setData}
-                                setDetailOpen={setDetailOpen}
+                                // setDetailOpen={setDetailOpen}
                             />
                         </div>
                     </Wrapper>
@@ -97,5 +101,5 @@ export default function Home() {
 }
 
 const Wrapper: React.FC<IWrapper> = ({children, className}) => {
-    return <div className={`flex flex-col h-full  ${className}`}>{children}</div>;
+    return <div className={`flex flex-col h-full   ${className}`}>{children}</div>;
 };

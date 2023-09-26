@@ -31,8 +31,17 @@ const config: Config = {
             animation: {
                 flip: 'flip 0.5s ',
                 wiggle: 'wiggle 1.25s infinite',
+                scale: 'scale 0.3s infinite',
             },
             keyframes: {
+                scale: {
+                    '0%': {
+                        transform: 'scale(1)',
+                    },
+                    '100%': {
+                        transform: 'scale(1.1)',
+                    },
+                },
                 jump: {
                     // '33%': {
                     //     'text-shadow': '0 60px #f37121, 0 150px #f2aaaa',

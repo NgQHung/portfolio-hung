@@ -1,4 +1,3 @@
-import {IExperienceData} from '@/components/data/experience';
 import {createSlice} from '@reduxjs/toolkit';
 
 interface InitialValue {

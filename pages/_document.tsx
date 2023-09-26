@@ -3,7 +3,7 @@ import Script from 'next/script';
 
 export default function Document() {
     return (
-        <Html lang="en">
+        <Html lang="en" className="scroll-smooth">
             <Head />
             <body>
                 <div id="portal"></div>

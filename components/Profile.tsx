@@ -11,7 +11,6 @@ interface IProfile {
 }
 const Profile: React.FC<IProfile> = (props) => {
     const [width] = useDeviceSize();
-    // console.log('hello', width);
     useEffect(() => {
         if (width <= 350) {
             props.setProfileOpen(false);

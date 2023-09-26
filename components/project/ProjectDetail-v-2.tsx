@@ -4,8 +4,6 @@ import Image from 'next/image';
 
 const ProjectDetailV2 = () => {
     const selectedProject = useAppSelector((state) => state.project.selectedProject);
-    // console.log('selectedProject', selectedProject);
-    // console.log('selectedProject', selectedProject.length);
     return (
         <div className="mr-5">
             {selectedProject.length !== 0 ? (

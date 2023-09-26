@@ -1,25 +1,27 @@
 import React, {Fragment, useCallback, useEffect, useRef} from 'react';
+import {motion} from 'framer-motion';
 import styled from '@emotion/styled';
 import tinycolor from 'tinycolor2';
-import {IExperienceData, experienceData} from './data/experience';
+import {experienceData} from './data/experience';
 import {experienceActions} from '@/stores/Experience';
-import {useAppDispatch} from './hook/useApp';
+import {useAppDispatch, useAppSelector} from './hook/useApp';
+import {LinkArrow} from './UI/Icons';
+import {useRouter} from 'next/router';
 
 interface IExp {
     experience: IExperienceData;
-    setData: (data: IExperienceData) => void;
-    setDetailOpen: (state: Boolean) => void;
+    setExperience: (data: IExperienceData) => void;
 }
 
 interface IExperience {
-    setData: (data: IExperienceData) => void;
-    setDetailOpen: (state: Boolean) => void;
+    setExperience: (data: IExperienceData) => void;
 }
 
-const Exp: React.FC<IExp> = ({experience, setData, setDetailOpen}) => {
+const Exp: React.FC<IExp> = ({experience, setExperience}) => {
     const [stateMouse, setStateMouse] = React.useState<Boolean>(false);
-    const [color, setColor] = React.useState<string>('');
-    const [bgColor] = React.useState<string>('var(--primary)');
+    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
+    const [bgColor, setBgColor] = React.useState<string>('var(--primary)');
+    const route = useRouter();
 
     const {job, time, company, about, position, technologiesUsed} = experience;
     const dispatch = useAppDispatch();
@@ -35,36 +37,36 @@ const Exp: React.FC<IExp> = ({experience, setData, setDetailOpen}) => {
 
     const clickHandler = (experience: IExperienceData) => {
         if (experience) {
-            setData(experience);
-            setDetailOpen(true);
-        } else setDetailOpen(false);
+            setExperience(experience);
+        }
+        route.push(experience.web);
     };
 
     useEffect(() => {
-        const colorToShow = tinycolor(bgColor).getBrightness() > 30 ? '#fff ' : '#000';
-
-        setColor(colorToShow);
-    }, [color]);
+        setBgColor(isDark ? '#1a1a1a' : 'var(--primary)');
+    }, [isDark]);
 
     return (
         <ContainerExp
-            color={color}
             bgColor={bgColor}
-            className="flex relative max-h-[400px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
+            isDark={isDark}
+            className="flex self-start relative group cursor-pointer text-xs sm:text-base w-full h-full rounded"
             onMouseEnter={() => mouseEnterHandler(experience.id)}
             onMouseLeave={mouseLeaveHandler}
             onClick={() => clickHandler(experience)}>
             <ContainerContent
-                color={color}
-                className=" flex justify-between h-full w-full  flex-row text-left dark:text-primary ">
-                <div className=" text-sm xl:text-base basis-1/3 text-black dark:text-primary p-2 transition-all">
+                isDark={isDark}
+                className=" flex justify-between h-full w-full  text-left dark:text-primary ">
+                <div className=" text-sm xl:text-base basis-1/3 uppercase text-black dark:text-primary p-2 transition-all">
                     {time}
                 </div>
-                <div className="flex space-y-1 pb-2 px-2 flex-col grow  text-left w-full dark:text-primary">
-                    <h1 className=" group-hover:text-secondary font-bold transition-all">
-                        {position} {job}
+                <div className="flex space-y-1 self-start p-2 flex-col  text-left w-full dark:text-primary">
+                    <h1 className=" flex group-hover:text-secondary font-bold transition-all">
+                        {position !== '' ? <span>{position}·</span> : null}{' '}
+                        {/* <span>{`${position}`}</span> */}
+                        <span className="pr-4">{company}</span>
+                        <LinkArrow />
                     </h1>
-
                     <p className="text-sm xl:text-base">{about}</p>
                     <ul className="flex flex-wrap text-sm xl:text-base">
                         {technologiesUsed.map((tech, index) => (
@@ -77,19 +79,6 @@ const Exp: React.FC<IExp> = ({experience, setData, setDetailOpen}) => {
                     </ul>
                 </div>
             </ContainerContent>
-            {/* <motion.span
-                initial={{opacity: 0, x: 0}}
-                animate={{opacity: stateMouse ? 1 : 0, x: stateMouse ? -10 : 0}}
-                whileHover={{
-                    opacity: stateMouse ? 1 : 0,
-                    x: stateMouse ? -10 : 0,
-                    transition: {
-                        type: 'spring',
-                    },
-                }}
-                className="hidden lg:inline">
-                <LeftArrow className="w-5 mr-5 inline-block font-bold dark:text-primary" />
-            </motion.span> */}
         </ContainerExp>
     );
 };
@@ -97,7 +86,7 @@ const Exp: React.FC<IExp> = ({experience, setData, setDetailOpen}) => {
 const TitleExperience = () => {
     return (
         <h1
-            className="text-xl xs:text-4xl text-bold text-left flex justify-end items-center
+            className="text-xl pt-10 xs:text-4xl text-bold text-left flex justify-end items-center
              border-b-2 border-solid border-black dark:border-primary dark:text-primary pl-4">
             <div className=" flex justify-start">
                 <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />
@@ -107,32 +96,29 @@ const TitleExperience = () => {
     );
 };
 
-const Experience: React.FC<IExperience> = ({setData, setDetailOpen}) => {
+const Experience: React.FC<IExperience> = ({setExperience}) => {
     return (
         <div
+            id="experience"
             className=" w-full h-full font-Montserrat tracking-wide space-y-2  
-            relative z-[1] ">
+            relative z-[1] "
+            style={{height: 'max-content'}}>
             <TitleExperience />
-            <div className="flex flex-col h-full  space-y-4  ">
-                {experienceData.map((exp, index) => (
-                    <Fragment key={index}>
-                        <Exp experience={exp} setData={setData} setDetailOpen={setDetailOpen} />
-                    </Fragment>
-                ))}
-            </div>
+            {experienceData.map((exp, index) => (
+                <Fragment key={index}>
+                    <Exp experience={exp} setExperience={setExperience} />
+                </Fragment>
+            ))}
         </div>
     );
 };
 
-const ContainerExp = styled.div<{color: string; bgColor: string}>`
+const ContainerExp = styled.div<{bgColor: string; isDark: Boolean}>`
     display: inline-block;
-    /* float: left; */
-    /* width: 160px; */
     position: relative;
     width: 100%;
-    height: 100%;
-    /* height: 160px; */
-    border: 1px solid ${(props) => props.color};
+    height: 100px;
+    border: 1px solid ${(props) => (props.isDark ? '#fff' : '#1a1a1a')};
     z-index: 0;
     transition: all 0.3s ease;
     opacity: 1;
@@ -184,8 +170,8 @@ const ContainerExp = styled.div<{color: string; bgColor: string}>`
     }
 `;
 
-const ContainerContent = styled.div<{color: string}>`
-    fill: ${(props) => props.color};
+const ContainerContent = styled.div<{isDark: Boolean}>`
+    fill: ${(props) => (props.isDark ? '#fff' : '#1a1a1a')};
     width: 100%;
     position: absolute;
     will-change: width;
