@@ -1,8 +1,10 @@
 export const projectData: IProjectData[] = [
     {
+        id: '1',
         title: 'Zalando Clone Web',
         color: '#f76600',
-        about: 'A clone website using React, Typescript, Redux, Tailwind designed to replicate the features and functionalities of the popular online fashion and lifestyle retailer. A clone website aims to provide a similar shopping experience to users.',
+        about: 'A clone website designed to replicate the features and functionalities of the popular online fashion and lifestyle retailer. A clone website aims to provide a similar shopping experience to users.',
+        type: 'personal',
         technologies: {
             fe: [
                 'React',
@@ -14,6 +16,7 @@ export const projectData: IProjectData[] = [
                 'Fontawesome',
             ],
             be: ['Express', 'Node', 'Axios', 'MongoDB', 'Bcrypt', 'Validator', 'Jsonwebtoken'],
+            primary: ['React', 'Typescript', 'HTML & CSS', 'Node', 'MongoDB'],
         },
         image: '/zalando.png',
         listImages: [
@@ -26,11 +29,13 @@ export const projectData: IProjectData[] = [
         ],
         website: 'https://zalando-clone-five.vercel.app/',
         source: 'https://github.com/NgQHung/zalando-5/',
-        year: 2023,
+        year: '9 - 10/2022',
     },
     {
+        id: '2',
         title: 'Cocktail Web',
-        about: 'A clone website using React, Typescript, Redux, Tailwind designed to allow users to view a list of cocktails. They can also see the details of each cocktail. For each registered user they can CRUD their own cocktails.',
+        about: 'A clone website designed to allow users to view a list of cocktails. They can also see the details of each cocktail. For each registered user they can CRUD their own cocktails.',
+        type: 'personal',
         color: '#dfe0e0',
         technologies: {
             fe: [
@@ -43,12 +48,13 @@ export const projectData: IProjectData[] = [
                 'Redux',
             ],
             be: ['Express', 'Node', 'Axios', 'MongoDB', 'Bcrypt', 'Validator', 'Jsonwebtoken'],
+            primary: ['React', 'Typescript', 'HTML & CSS', 'Node', 'MongoDB'],
         },
         image: '/cocktail.png',
         listImages: [''],
         website: 'https://cocktail-app-opal.vercel.app/',
         source: 'https://github.com/NgQHung/cocktail-app-typescript/',
-        year: 2022,
+        year: '8 - 9/2022',
     },
     // {
     //     title: 'Pokemon Card',

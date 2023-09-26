@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import ThemeSwitcher from './ThemeSwitcher';
+import Project from './Project';
 
 const store = configureStore({
     reducer: {
         themeSwitcher: ThemeSwitcher,
+        project: Project,
     },
 });
 

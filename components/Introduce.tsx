@@ -1,14 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {AnimatedButtonHover} from './UI/AnimatedButtonHover';
 import TerminalTextEffect from './TerminalTextEffect';
-import {useAppSelector} from './hook/useApp';
 
-// const text = 'Hung Nguyen Quang';
-interface IAbout {
+interface IIntroduce {
     setProfileOpen: (state: Boolean) => void;
 }
-
-const About: React.FC<IAbout> = (props) => {
+const Introduce: React.FC<IIntroduce> = (props) => {
     return (
         <div className="max-w-[450px] max-h-[225px] font-Montserrat tracking-wide space-y-3 relative z-[1]">
             <h1 className="text-xl h-[50px] xs:h-[100px] xs:text-4xl relative ">
@@ -35,11 +32,13 @@ const About: React.FC<IAbout> = (props) => {
                 </p> */}
             {/* </div> */}
 
-            <div onClick={() => props.setProfileOpen(true)} className="mt-4 cursor-pointer ">
+            <div
+                onClick={() => props.setProfileOpen(true)}
+                className="mt-4 cursor-pointer inline-block">
                 <AnimatedButtonHover title="View My Profile" />
             </div>
         </div>
     );
 };
 
-export default About;
+export default Introduce;

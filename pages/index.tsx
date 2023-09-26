@@ -4,7 +4,10 @@ import dynamic from 'next/dynamic';
 import {useFollowPointer} from '@/components/hook/UseFollowPointer';
 
 import DarkLightButton from '@/components/DarkLightButton';
-const DynamicAbout = dynamic(() => import('@/components/About'));
+// import Introduce from '@/components/Introduce';
+const DynamicIntroduce = dynamic(() => import('@/components/Introduce'));
+
+const DynamicAbout = dynamic(() => import('@/components/about/About'));
 const DynamicProjects = dynamic(() => import('@/components/project/Projects'));
 const DynamicProjectDetail = dynamic(() => import('@/components/project/ProjectDetail'));
 const DynamicLayout = dynamic(() => import('@/components/Layout'));
@@ -21,15 +24,6 @@ interface IWrapper {
     className?: String;
 }
 
-interface ICustomLink {
-    children?: ReactNode;
-    href: string;
-    className?: string;
-}
-
-const Wrapper: React.FC<IWrapper> = ({children, className}) => {
-    return <div className={`flex items-start p-8 lg:p-12 ${className}`}>{children}</div>;
-};
 export default function Home() {
     const [data, setData] = useState<IProjectData>();
     const [dataMoreInfo, setDataMoreInfo] = useState<string[]>();
@@ -52,26 +46,29 @@ export default function Home() {
             <DarkLightButton />
             <div className="hidden xss:block overflow-hidden max-h-screen max-w-screen ">
                 <DynamicLayout>
-                    <Wrapper className="justify-between ">
-                        <DynamicAbout setProfileOpen={setProfileOpen} />
-                        <DynamicAnimatedBackgroundText />
-                    </Wrapper>
-                    <Wrapper className="justify-end items-end md:justify-between ">
+                    <Wrapper className="justify-between items-start py-16 px-8 lg:px-12 xl:px-16 lg:py-28 basis-[50%]">
+                        <DynamicIntroduce setProfileOpen={setProfileOpen} />
                         <DynamicLinks />
-                        <DynamicProjects
-                            setDataMoreInfo={setDataMoreInfo}
-                            setData={setData}
-                            setDetailOpen={setDetailOpen}
-                        />
+                    </Wrapper>
+                    <Wrapper className=" grow pr-8 lg:px-12 xl:px-16  basis-[50%]">
+                        <div className="sticky overflow-scroll pt-28 top-0 right-0 h-full w-full scrollbar_hidden  space-y-10">
+                            {/* <DynamicAnimatedBackgroundText /> */}
+                            <DynamicAbout />
+                            <DynamicProjects
+                                setDataMoreInfo={setDataMoreInfo}
+                                setData={setData}
+                                setDetailOpen={setDetailOpen}
+                            />
+                        </div>
                     </Wrapper>
                 </DynamicLayout>
-                <DynamicProjectDetail
+                {/* <DynamicProjectDetail
                     project={data!}
                     setDetailOpen={setDetailOpen}
                     detailOpen={detailOpen}
                     moreInfoOpen={moreInfoOpen}
                     setMoreInfoOpen={setMoreInfoOpen}
-                />
+                /> */}
 
                 <DynamicProjectMoreInfo
                     dataMoreInfo={dataMoreInfo!}
@@ -79,6 +76,7 @@ export default function Home() {
                     detailOpen={detailOpen}
                     setMoreInfoOpen={setMoreInfoOpen}
                 />
+                {/* <ProjectDetailV2 /> */}
                 {/* <motion.div
                     ref={ref}
                     className="w-4 h-4 rounded-full border border-secondary flex justify-center items-center"
@@ -97,3 +95,7 @@ export default function Home() {
         </Fragment>
     );
 }
+
+const Wrapper: React.FC<IWrapper> = ({children, className}) => {
+    return <div className={`flex flex-col h-full  ${className}`}>{children}</div>;
+};

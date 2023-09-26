@@ -1,92 +1,73 @@
 import React, {Fragment, useCallback, useEffect, useRef} from 'react';
-import {LeftArrow} from '../UI/Icons';
-import {projectData} from '../data';
-import {motion} from 'framer-motion';
-import {useAppDispatch} from '../hook/useApp';
-import {projectActions} from '@/stores/Project';
-import ProjectDetailV2 from './ProjectDetail-v-2';
 import styled from '@emotion/styled';
-// import tinycolor from 'tinycolor2'
 import tinycolor from 'tinycolor2';
+import {IExperienceData, experienceData} from './data/experience';
+import {experienceActions} from '@/stores/Experience';
+import {useAppDispatch} from './hook/useApp';
 
-interface IProject {
-    project: IProjectData;
-    // key: Key;
-    setDataMoreInfo: (data: string[]) => void;
-    setData: (data: IProjectData) => void;
+interface IExp {
+    experience: IExperienceData;
+    setData: (data: IExperienceData) => void;
     setDetailOpen: (state: Boolean) => void;
 }
 
-interface IProjects {
-    setData: (data: IProjectData) => void;
+interface IExperience {
+    setData: (data: IExperienceData) => void;
     setDetailOpen: (state: Boolean) => void;
-    setDataMoreInfo: (data: string[]) => void;
 }
 
-const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMoreInfo}) => {
+const Exp: React.FC<IExp> = ({experience, setData, setDetailOpen}) => {
     const [stateMouse, setStateMouse] = React.useState<Boolean>(false);
     const [color, setColor] = React.useState<string>('');
     const [bgColor] = React.useState<string>('var(--primary)');
 
-    // const [projectOnHover, setProjectOnHover] = React.useState<IProjectData[]>();
-    const {title, year, type, about, technologies} = project;
+    const {job, time, company, about, position, technologiesUsed} = experience;
     const dispatch = useAppDispatch();
     const mouseEnterHandler = (id: String) => {
         setStateMouse(true);
-        const selectedProject = projectData.filter((project) => project.id === id);
-        dispatch(projectActions.selectedProject(selectedProject));
+        const selectedExperience = experienceData.filter((exp) => exp.id === id);
+        dispatch(experienceActions.selectedExperience(selectedExperience));
     };
     const mouseLeaveHandler = () => {
         setStateMouse(false);
-        dispatch(projectActions.selectedProject([]));
+        dispatch(experienceActions.selectedExperience([]));
     };
 
-    const clickHandler = (project: IProjectData) => {
-        if (project) {
-            setData(project);
+    const clickHandler = (experience: IExperienceData) => {
+        if (experience) {
+            setData(experience);
             setDetailOpen(true);
-            setDataMoreInfo(project.listImages);
         } else setDetailOpen(false);
     };
 
     useEffect(() => {
-        // function setColor(bgColor: string): string {
-        //     if (tinycolor(bgColor).getBrightness() > 30) {
-        //         return '#000';
-        //     } else {
-        //         return '#FFF';
-        //     }
-        // }
         const colorToShow = tinycolor(bgColor).getBrightness() > 30 ? '#fff ' : '#000';
 
         setColor(colorToShow);
-        // console.log('getBrightness', tinycolor('#fdf8f0').getBrightness());
     }, [color]);
 
     return (
-        <ContainerProject
+        <ContainerExp
             color={color}
             bgColor={bgColor}
             className="flex relative max-h-[400px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
-            onMouseEnter={() => mouseEnterHandler(project.id)}
+            onMouseEnter={() => mouseEnterHandler(experience.id)}
             onMouseLeave={mouseLeaveHandler}
-            onClick={() => clickHandler(project)}>
-            {/* <ContainerProject  className="  "> */}
+            onClick={() => clickHandler(experience)}>
             <ContainerContent
                 color={color}
                 className=" flex justify-between h-full w-full  flex-row text-left dark:text-primary ">
                 <div className=" text-sm xl:text-base basis-1/3 text-black dark:text-primary p-2 transition-all">
-                    {year}
+                    {time}
                 </div>
-                <div className="flex space-y-1 pb-2  flex-col grow  text-left w-full dark:text-primary">
+                <div className="flex space-y-1 pb-2 px-2 flex-col grow  text-left w-full dark:text-primary">
                     <h1 className=" group-hover:text-secondary font-bold transition-all">
-                        {title}
+                        {position} {job}
                     </h1>
-                    {type === 'personal' && <h2> Personal Project</h2>}
 
                     <p className="text-sm xl:text-base">{about}</p>
                     <ul className="flex flex-wrap text-sm xl:text-base">
-                        {technologies.primary.map((tech, index) => (
+                        {technologiesUsed.map((tech, index) => (
                             <li
                                 className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
                                 key={tech + '-' + index}>
@@ -96,7 +77,6 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
                     </ul>
                 </div>
             </ContainerContent>
-            {/* </ContainerProject> */}
             {/* <motion.span
                 initial={{opacity: 0, x: 0}}
                 animate={{opacity: stateMouse ? 1 : 0, x: stateMouse ? -10 : 0}}
@@ -110,11 +90,11 @@ const Project: React.FC<IProject> = ({project, setData, setDetailOpen, setDataMo
                 className="hidden lg:inline">
                 <LeftArrow className="w-5 mr-5 inline-block font-bold dark:text-primary" />
             </motion.span> */}
-        </ContainerProject>
+        </ContainerExp>
     );
 };
 
-const TitleProjects = () => {
+const TitleExperience = () => {
     return (
         <h1
             className="text-xl xs:text-4xl text-bold text-left flex justify-end items-center
@@ -122,36 +102,29 @@ const TitleProjects = () => {
             <div className=" flex justify-start">
                 <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />
             </div>
-            <span className="grow">Projects</span>
+            <span className="grow">Experience</span>
         </h1>
     );
 };
 
-const Projects: React.FC<IProjects> = ({setData, setDetailOpen, setDataMoreInfo}) => {
+const Experience: React.FC<IExperience> = ({setData, setDetailOpen}) => {
     return (
         <div
             className=" w-full h-full font-Montserrat tracking-wide space-y-2  
             relative z-[1] ">
-            <TitleProjects />
+            <TitleExperience />
             <div className="flex flex-col h-full  space-y-4  ">
-                {projectData.map((project, index) => (
+                {experienceData.map((exp, index) => (
                     <Fragment key={index}>
-                        <Project
-                            // key={index}
-                            setDataMoreInfo={setDataMoreInfo}
-                            project={project}
-                            setData={setData}
-                            setDetailOpen={setDetailOpen}
-                        />
+                        <Exp experience={exp} setData={setData} setDetailOpen={setDetailOpen} />
                     </Fragment>
                 ))}
             </div>
         </div>
-        // {/* <ProjectDetailV2 /> */}
     );
 };
 
-const ContainerProject = styled.div<{color: string; bgColor: string}>`
+const ContainerExp = styled.div<{color: string; bgColor: string}>`
     display: inline-block;
     /* float: left; */
     /* width: 160px; */
@@ -223,4 +196,4 @@ const ContainerContent = styled.div<{color: string}>`
     z-index: 4;
 `;
 
-export default Projects;
+export default Experience;
