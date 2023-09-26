@@ -2,6 +2,7 @@ import {Fragment, ReactNode, useRef, useState} from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import {useFollowPointer} from '@/components/hook/UseFollowPointer';
+import useDeviceSize from '@/components/hook/useDeviceSize';
 
 const DynamicIntroduce = dynamic(() => import('@/components/Introduce'));
 
@@ -32,6 +33,7 @@ export default function Home() {
     const [moreInfoOpen, setMoreInfoOpen] = useState<Boolean>(false);
     const ref = useRef<any>(null);
     const {x, y} = useFollowPointer(ref);
+    const [width] = useDeviceSize();
 
     return (
         <Fragment>
@@ -40,39 +42,25 @@ export default function Home() {
                 <meta name="description" content="any description" />
             </Head>
             {/* <Grid /> */}
-            {/* <Profile setProfileOpen={setProfileOpen} profileOpen={profileOpen} /> */}
             <DynamicDarkLightButton />
-            <div className="hidden xss:block overflow-hidden max-h-screen max-w-screen ">
+            <div className="hidden xss:block  max-h-screen max-w-screen">
                 <DynamicLayout>
-                    <Wrapper className="justify-between items-start py-16 px-8 lg:px-12 xl:px-16 lg:py-20 basis-[50%]">
+                    <div
+                        style={{height: `${width < 1024 ? 'max-content' : ''}`}}
+                        className="relative lg:absolute inline-block lg:flex lg:flex-col h-full top-0 left-0 lg:justify-between lg:items-start py-8 px-8 lg:px-12 xl:px-16 lg:py-16 max-w-full lg:max-w-[50%]">
                         <DynamicIntroduce setProfileOpen={setProfileOpen} />
                         <DynamicNavbar />
                         <DynamicLinks />
-                    </Wrapper>
-                    <Wrapper className=" grow pr-8 lg:px-12 xl:px-16 py-16 lg:py-20  basis-[50%]">
-                        <div className="sticky overflow-scroll pt-16n lg:pt-20 top-0 right-0 h-full w-full scrollbar_hidden  ">
+                    </div>
+                    <div className="flex-col h-full relative lg:sticky lg:overflow-scroll  scrollbar_hidden top-0 right-0 left-0 flex justify-end items-end w-full pr-8 lg:px-12 xl:px-16 py-16 lg:py-20  ">
+                        <div className="pt-8 lg:pt-16 top-0 right-0 h-full  max-w-[100%] lg:max-w-[50%] ">
                             {/* <DynamicAnimatedBackgroundText /> */}
                             <DynamicAbout />
-                            <DynamicExperience
-                                // setDataMoreInfo={setDataMoreInfo}
-                                setExperience={setExperience}
-                                // setDetailOpen={setDetailOpen}
-                            />
-                            <DynamicProjects
-                                // setDataMoreInfo={setDataMoreInfo}
-                                setData={setData}
-                                // setDetailOpen={setDetailOpen}
-                            />
+                            <DynamicExperience setExperience={setExperience} />
+                            <DynamicProjects setData={setData} />
                         </div>
-                    </Wrapper>
+                    </div>
                 </DynamicLayout>
-                {/* <DynamicProjectDetail
-                    project={data!}
-                    setDetailOpen={setDetailOpen}
-                    detailOpen={detailOpen}
-                    moreInfoOpen={moreInfoOpen}
-                    setMoreInfoOpen={setMoreInfoOpen}
-                /> */}
 
                 <DynamicProjectMoreInfo
                     dataMoreInfo={dataMoreInfo!}
@@ -80,7 +68,6 @@ export default function Home() {
                     detailOpen={detailOpen}
                     setMoreInfoOpen={setMoreInfoOpen}
                 />
-                {/* <ProjectDetailV2 /> */}
                 {/* <motion.div
                     ref={ref}
                     className="w-4 h-4 rounded-full border border-secondary flex justify-center items-center"

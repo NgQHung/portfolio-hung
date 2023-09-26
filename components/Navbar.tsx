@@ -1,8 +1,5 @@
 import React from 'react';
-import {motion} from 'framer-motion';
 import Link from 'next/link';
-import scrollTo from 'next/router';
-import ScrollLink from './hook/useScrollLink';
 const Navbar = () => {
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         // first prevent the default behavior
@@ -17,7 +14,7 @@ const Navbar = () => {
         });
     };
     return (
-        <ul className="flex flex-col justify-between font-bold text-black dark:text-primary">
+        <ul className="hidden lg:flex flex-col justify-between font-bold text-black dark:text-primary">
             <Link
                 href="#about"
                 onClick={handleScroll}
