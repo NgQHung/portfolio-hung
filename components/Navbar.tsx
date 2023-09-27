@@ -14,7 +14,7 @@ const Navbar = () => {
         });
     };
     return (
-        <ul className="hidden lg:flex flex-col justify-between font-bold text-black dark:text-primary">
+        <ul className="z-[1] pt-20 hidden lg:flex flex-col justify-between font-bold text-black dark:text-primary">
             <Link
                 href="#about"
                 onClick={handleScroll}

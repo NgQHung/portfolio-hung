@@ -25,7 +25,7 @@ export const AnimatedButtonHover: React.FC<IAnimatedButtonHover> = (props) => {
 
     return (
         <ContainerLink>
-            <ContainerButton className="text-xs sm:text-base font-bold sm:font-[900] text-black dark:text-primary">
+            <ContainerButton className="text-sm lg:text-base font-bold sm:font-[900] text-black dark:text-primary">
                 {/* {props.title.split(" ").} */}
                 {firstText
                     ? firstText.map((word, index) => {
@@ -50,10 +50,6 @@ export const AnimatedButtonHover: React.FC<IAnimatedButtonHover> = (props) => {
                       })
                     : null}
             </ContainerButton>
-            {/* <ContainerSvg width="13px" height="10px" viewBox="0 0 13 10">
-                    <path d="M1,5 L11,5"></path>
-                    <polyline points="8 1 12 5 8 9"></polyline>
-                </ContainerSvg> */}
         </ContainerLink>
     );
 };
@@ -97,25 +93,3 @@ const ContainerButton = styled.span`
     text-transform: uppercase;
     vertical-align: middle;
 `;
-// const ContainerSvg = styled.svg`
-//     position: relative;
-//     top: 0;
-//     margin-left: 10px;
-//     fill: none;
-//     stroke-linecap: round;
-//     stroke-linejoin: round;
-//     stroke: #111;
-//     stroke-width: 2;
-//     transform: translateX(-5px);
-//     transition: all 0.3s ease;
-// `;
-// export const AnimatedButtonSlide = () => {
-//     return (
-//         <button
-//             className="border border-solid border-secondary rounded-md
-//             text-secondary background-gradient-slide-color
-//             ">
-//             <span className="p-2">View My Profile</span>
-//         </button>
-//     );
-// };

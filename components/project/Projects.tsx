@@ -45,52 +45,94 @@ const Project: React.FC<IProject> = ({project, setData}) => {
         setBgColor(isDark ? '#1a1a1a' : 'var(--primary)');
     }, [isDark]);
     return (
-        <ContainerProject
-            isDark={isDark}
-            bgColor={bgColor}
-            className="flex relative max-h-[400px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
-            onMouseEnter={() => mouseEnterHandler(project.id)}
-            onMouseLeave={mouseLeaveHandler}
-            onClick={() => clickHandler(project)}>
-            <ContainerContent
+        <>
+            <ContainerProject
+                // style={{height: 'max-content'}}
                 isDark={isDark}
-                className=" flex justify-between h-full w-full  flex-row text-left dark:text-primary ">
-                <div className="p-2 text-sm basis-1/3 text-black dark:text-primary  transition-all">
-                    {year}
-                </div>
-                <div className="flex space-y-1 py-2  flex-col grow  text-left w-full dark:text-primary">
-                    <h1 className="flex group-hover:text-secondary font-bold transition-all">
-                        <span className="pr-4">{title}</span>
-                        <LinkArrow />
-                    </h1>
-                    {type === 'personal' && <h2> Personal Project</h2>}
+                bgColor={bgColor}
+                className="hidden lg:flex relative max-h-[400px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
+                onMouseEnter={() => mouseEnterHandler(project.id)}
+                onMouseLeave={mouseLeaveHandler}
+                onClick={() => clickHandler(project)}>
+                <ContainerContent
+                    isDark={isDark}
+                    className=" flex justify-between h-full w-full flex-row text-left dark:text-primary ">
+                    <div className="lg:p-2 dark:opacity-70 leading-6 text-sm basis-1/3 text-black dark:text-primary  transition-all">
+                        {year}
+                    </div>
+                    <div className="flex space-y-1 py-2  flex-col grow  text-left w-full dark:text-primary">
+                        <h1 className="flex group-hover:text-secondary font-bold transition-all">
+                            <span className="pr-4">{title}</span>
+                            <LinkArrow />
+                        </h1>
+                        {type === 'personal' && <h2> Personal Project</h2>}
 
-                    <p className="text-sm">{about}</p>
-                    <ul className="flex flex-wrap text-sm">
-                        {technologies.primary.map((tech, index) => (
-                            <li
-                                className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
-                                key={tech + '-' + index}>
-                                {tech}
-                            </li>
-                        ))}
-                    </ul>
+                        <p className="text-sm">{about}</p>
+                        <ul className="flex flex-wrap text-sm">
+                            {technologies.primary.map((tech, index) => (
+                                <li
+                                    className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
+                                    key={tech + '-' + index}>
+                                    {tech}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </ContainerContent>
+            </ContainerProject>
+            <div
+                style={{height: 'max-content'}}
+                className="flex p-8 lg:hidden relative max-h-[400px] group  cursor-pointer text-base w-full h-full rounded"
+                onMouseEnter={() => mouseEnterHandler(project.id)}
+                onMouseLeave={mouseLeaveHandler}
+                onClick={() => clickHandler(project)}>
+                <div className=" flex justify-between h-full w-full  flex-col sm:flex-row text-left dark:text-primary ">
+                    <div className="lg:p-2 dark:opacity-70 font-[600] text-xs lg:text-base pb-4 leading-6 sm:basis-1/3 text-black dark:text-primary  transition-all">
+                        {year}
+                    </div>
+                    <div className="flex space-y-1 lg:py-2  flex-col grow  text-left w-full dark:text-primary">
+                        <h1 className="flex group-hover:text-secondary font-bold transition-all">
+                            <span className="pr-4">{title}</span>
+                            <LinkArrow />
+                        </h1>
+                        {type === 'personal' && <h2> Personal Project</h2>}
+
+                        <p className="text-sm lg:text-base pb-4">{about}</p>
+                        <ul className="flex flex-wrap text-sm lg:text-base">
+                            {technologies.primary.map((tech, index) => (
+                                <li
+                                    className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
+                                    key={tech + '-' + index}>
+                                    {tech}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-            </ContainerContent>
-        </ContainerProject>
+            </div>
+        </>
     );
 };
 
 const TitleProjects = () => {
     return (
-        <h1
-            className="text-xl pt-10 xs:text-4xl text-bold text-left flex justify-end items-center
-             border-b-2 border-solid border-black dark:border-primary dark:text-primary pl-4">
-            <div className=" flex justify-start">
-                <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />
+        <>
+            <h1
+                className="hidden text-xl pt-10 xs:text-4xl font-bold text-left lg:flex justify-end items-center
+                 border-b-2 border-solid border-black dark:border-primary dark:text-primary pl-4">
+                <div className=" flex justify-start">
+                    <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />
+                </div>
+                <span className="grow">Projects</span>
+            </h1>
+            <div id="scrollHeaderProjects" className="lg:hidden  w-full border ">
+                <h1
+                    className="px-8  py-[24px] lg:py-8  text-2xl sm:pt-10 font-bold text-left flex justify-end items-center
+                      dark:text-primary">
+                    <span className="grow">Projects</span>
+                </h1>
             </div>
-            <span className="grow">Projects</span>
-        </h1>
+        </>
     );
 };
 
@@ -98,22 +140,23 @@ const Projects: React.FC<IProjects> = ({setData}) => {
     return (
         <div
             id="projects"
-            className=" w-full h-full font-Montserrat tracking-wide space-y-2  
-            relative z-[1]">
+            className="pr-8  lg:px-12 xl:px-16  w-full h-full font-Montserrat tracking-wide space-y-2  
+            relative z-[1] ">
             <TitleProjects />
-            <div className="flex flex-col h-full  space-y-4  ">
+            <div className="flex flex-col h-full  lg:space-y-4  ">
                 {projectData.map((project, index) => (
                     <Fragment key={index}>
                         <Project project={project} setData={setData} />
                     </Fragment>
                 ))}
             </div>
+            <div className="h-0 lg:h-10" />
         </div>
     );
 };
 
 const ContainerProject = styled.div<{bgColor: string; isDark: Boolean}>`
-    display: inline-block;
+    /* display: inline-block; */
     position: relative;
     width: 100%;
     height: 100%;

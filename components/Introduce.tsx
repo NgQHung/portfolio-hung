@@ -8,7 +8,7 @@ interface IIntroduce {
 const Introduce: React.FC<IIntroduce> = (props) => {
     return (
         <div className="max-w-[450px] max-h-full lg:max-h-[225px] font-Montserrat tracking-wide relative z-[1]">
-            <h1 className="text-xl h-[50px] xs:h-[100px] xs:text-4xl relative ">
+            <h1 className="h-[100px] text-4xl relative ">
                 <TerminalTextEffect />
             </h1>
             <h2 className="mt-2 lg:mt-4 font-bold text-sm sm:text-xl text-black dark:text-primary">

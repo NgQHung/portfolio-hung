@@ -160,3 +160,12 @@ body {
         transform: translate(-10%, 10%);
     }
 }
+
+.headerSticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: var(--primary);
+    z-index: 4;
+    opacity: 0.9;
+}

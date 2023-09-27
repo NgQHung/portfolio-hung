@@ -2,9 +2,13 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className="h-full text-black dark:text-primary pl-4">
-            <h1 className="block lg:hidden font-bold py-8">About</h1>
-            <p id="about" className="">
+        <div className="  lg:py-16 xl:py-20 text-black dark:text-primary lg:pl-4 pb-16  lg:pb:0">
+            <div id="scrollHeaderAbout" className="h-full w-full relative border">
+                <h1 className="block lg:hidden font-bold py-6 text-2xl px-8 ">About</h1>
+            </div>
+            <p
+                id="about"
+                className="pr-8 p-8  lg:px-12 xl:px-16 text-sm sm:text-base  pt-8  lg:pt-16 ">
                 Hi, I am Hung Nguyen Quang, 23 years old. I am currently a student of Unicorn
                 University, I am very confident in my knowledge of Software Development.
                 <br />

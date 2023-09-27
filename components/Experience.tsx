@@ -1,7 +1,6 @@
-import React, {Fragment, useCallback, useEffect, useRef} from 'react';
+import React, {Fragment, useCallback, useEffect, useRef, useState} from 'react';
 import {motion} from 'framer-motion';
 import styled from '@emotion/styled';
-import tinycolor from 'tinycolor2';
 import {experienceData} from './data/experience';
 import {experienceActions} from '@/stores/Experience';
 import {useAppDispatch, useAppSelector} from './hook/useApp';
@@ -46,53 +45,94 @@ const Exp: React.FC<IExp> = ({experience, setExperience}) => {
         setBgColor(isDark ? '#1a1a1a' : 'var(--primary)');
     }, [isDark]);
 
+    // const [isScrollUp, setIsScrollUp] = useState<boolean>(false);
+
     return (
-        <ContainerExp
-            bgColor={bgColor}
-            isDark={isDark}
-            className="flex self-start relative group cursor-pointer text-xs sm:text-base w-full h-full rounded"
-            onMouseEnter={() => mouseEnterHandler(experience.id)}
-            onMouseLeave={mouseLeaveHandler}
-            onClick={() => clickHandler(experience)}>
-            <ContainerContent
+        <>
+            <ContainerExp
+                bgColor={bgColor}
                 isDark={isDark}
-                className=" flex justify-between h-full w-full  text-left dark:text-primary ">
-                <div className=" text-sm xl:text-base basis-1/3 uppercase text-black dark:text-primary p-2 transition-all">
-                    {time}
+                className="hidden  lg:flex mb-10 self-start relative group cursor-pointer text-xs sm:text-base w-full h-full rounded"
+                onMouseEnter={() => mouseEnterHandler(experience.id)}
+                onMouseLeave={mouseLeaveHandler}
+                onClick={() => clickHandler(experience)}>
+                <ContainerContent
+                    isDark={isDark}
+                    className=" flex justify-between h-full w-full  text-left dark:text-primary ">
+                    <div className=" dark:opacity-70 text-sm xl:text-base basis-1/3 uppercase text-black dark:text-primary p-2 transition-all">
+                        {time}
+                    </div>
+                    <div className="flex space-y-1 self-start py-2 flex-col  text-left w-full dark:text-primary">
+                        <h1 className=" flex group-hover:text-secondary font-bold transition-all">
+                            {position !== '' ? <span>{position}·</span> : null}{' '}
+                            <span className="pr-4">{company}</span>
+                            <LinkArrow />
+                        </h1>
+                        <p className="text-sm xl:text-base">{about}</p>
+                        <ul className="flex flex-wrap text-sm xl:text-base">
+                            {technologiesUsed.map((tech, index) => (
+                                <li
+                                    className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
+                                    key={tech + '-' + index}>
+                                    {tech}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </ContainerContent>
+            </ContainerExp>
+            <div
+                className="flex p-8 lg:hidden  self-start relative group cursor-pointer text-base w-full h-full rounded"
+                onMouseEnter={() => mouseEnterHandler(experience.id)}
+                onMouseLeave={mouseLeaveHandler}
+                onClick={() => clickHandler(experience)}>
+                <div className=" flex justify-between h-full w-full flex-col sm:flex-row  text-left dark:text-primary ">
+                    <div className="dark:opacity-70 leading-6 text-xs font-[600] lg:text-base basis-1/3 uppercase text-black dark:text-primary lg:p-2 transition-all">
+                        {time}
+                    </div>
+                    <div className="flex space-y-1 self-start flex-col  text-left w-full dark:text-primary">
+                        <h1 className=" flex group-hover:text-secondary font-bold transition-all">
+                            {position !== '' ? <span>{position}·</span> : null}{' '}
+                            {/* <span>{`${position}`}</span> */}
+                            <span className="pr-4">{company}</span>
+                            <LinkArrow />
+                        </h1>
+                        <p className="text-sm lg:text-base pb-4">{about}</p>
+                        <ul className="flex flex-wrap text-sm lg:text-base">
+                            {technologiesUsed.map((tech, index) => (
+                                <li
+                                    className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
+                                    key={tech + '-' + index}>
+                                    {tech}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-                <div className="flex space-y-1 self-start p-2 flex-col  text-left w-full dark:text-primary">
-                    <h1 className=" flex group-hover:text-secondary font-bold transition-all">
-                        {position !== '' ? <span>{position}·</span> : null}{' '}
-                        {/* <span>{`${position}`}</span> */}
-                        <span className="pr-4">{company}</span>
-                        <LinkArrow />
-                    </h1>
-                    <p className="text-sm xl:text-base">{about}</p>
-                    <ul className="flex flex-wrap text-sm xl:text-base">
-                        {technologiesUsed.map((tech, index) => (
-                            <li
-                                className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
-                                key={tech + '-' + index}>
-                                {tech}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </ContainerContent>
-        </ContainerExp>
+            </div>
+        </>
     );
 };
 
 const TitleExperience = () => {
     return (
-        <h1
-            className="text-xl pt-10 xs:text-4xl text-bold text-left flex justify-end items-center
-             border-b-2 border-solid border-black dark:border-primary dark:text-primary pl-4">
-            <div className=" flex justify-start">
-                <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />
+        <>
+            <h1
+                className="hidden text-xl pt-10 xs:text-4xl font-bold text-left lg:flex justify-end items-center
+                 border-b-2 border-solid border-black dark:border-primary dark:text-primary pl-4">
+                <div className=" flex justify-start">
+                    <div className="w-4 h-4 bg-black dark:bg-primary mr-3 " />
+                </div>
+                <span className="grow">Experience</span>
+            </h1>
+            <div id="scrollHeaderExperience" className="lg:hidden h-full w-full relative ">
+                <h1
+                    className=" px-8  py-[24px] lg:py-8 text-2xl lg:pt-10 font-bold text-left flex justify-end items-center
+                  dark:text-primary">
+                    <span className="grow">Experience</span>
+                </h1>
             </div>
-            <span className="grow">Experience</span>
-        </h1>
+        </>
     );
 };
 
@@ -100,8 +140,8 @@ const Experience: React.FC<IExperience> = ({setExperience}) => {
     return (
         <div
             id="experience"
-            className=" w-full h-full font-Montserrat tracking-wide space-y-2  
-            relative z-[1] "
+            className="pr-8 lg:px-12 xl:px-16  w-full h-full font-Montserrat tracking-wide lg:space-y-2  
+            relative z-[1] lg:pb-0"
             style={{height: 'max-content'}}>
             <TitleExperience />
             {experienceData.map((exp, index) => (
@@ -114,7 +154,7 @@ const Experience: React.FC<IExperience> = ({setExperience}) => {
 };
 
 const ContainerExp = styled.div<{bgColor: string; isDark: Boolean}>`
-    display: inline-block;
+    /* display: inline-block; */
     position: relative;
     width: 100%;
     height: 100px;
