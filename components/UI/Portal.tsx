@@ -16,7 +16,7 @@ export const Portal: React.FC<PortalProps> = (props) => {
 
     return mounted && ref.current
         ? createPortal(
-              <div className="fixed top-0 z-[2] left-0 w-full h-full overflow-auto bg-backdrop" />,
+              <div className="fixed top-0 z-[3] left-0 w-full h-full overflow-auto bg-backdrop" />,
               ref.current
           )
         : null;
