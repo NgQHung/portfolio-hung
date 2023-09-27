@@ -4,6 +4,7 @@ import {CloseIcon} from './UI/Icons';
 import {Portal} from './UI/Portal';
 import Image from 'next/image';
 import useDeviceSize from './hook/useDeviceSize';
+import Link from 'next/link';
 
 interface IProfile {
     setProfileOpen: (state: Boolean) => void;
@@ -54,11 +55,15 @@ const Profile: React.FC<IProfile> = (props) => {
                             and becoming a full-stack developer. Hope you are interested. Thanks a
                             lot.
                         </p>
-                        <div className="w-full my-2">
+                        <Link
+                            href="/Hung-Nguyen-Quang-CV.pdf"
+                            target={'_blank'}
+                            download={true}
+                            className="w-full my-2">
                             <button className="w-full bg-black text-primary rounded-md">
                                 My CV
                             </button>
-                        </div>
+                        </Link>
                     </div>
                 </motion.div>
             )}

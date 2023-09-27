@@ -1,5 +1,4 @@
-import React, {Fragment, useCallback, useEffect, useRef, useState} from 'react';
-import {motion} from 'framer-motion';
+import React, {Fragment, useEffect, useState} from 'react';
 import styled from '@emotion/styled';
 import {experienceData} from './data/experience';
 import {experienceActions} from '@/stores/Experience';
@@ -9,17 +8,12 @@ import {useRouter} from 'next/router';
 
 interface IExp {
     experience: IExperienceData;
-    setExperience: (data: IExperienceData) => void;
 }
 
-interface IExperience {
-    setExperience: (data: IExperienceData) => void;
-}
-
-const Exp: React.FC<IExp> = ({experience, setExperience}) => {
-    const [stateMouse, setStateMouse] = React.useState<Boolean>(false);
+const Exp: React.FC<IExp> = ({experience}) => {
+    const [stateMouse, setStateMouse] = useState<Boolean>(false);
     const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
-    const [bgColor, setBgColor] = React.useState<string>('var(--primary)');
+    const [bgColor, setBgColor] = useState<string>('var(--primary)');
     const route = useRouter();
 
     const {job, time, company, about, position, technologiesUsed} = experience;
@@ -35,9 +29,6 @@ const Exp: React.FC<IExp> = ({experience, setExperience}) => {
     };
 
     const clickHandler = (experience: IExperienceData) => {
-        if (experience) {
-            setExperience(experience);
-        }
         route.push(experience.web);
     };
 
@@ -45,14 +36,12 @@ const Exp: React.FC<IExp> = ({experience, setExperience}) => {
         setBgColor(isDark ? '#1a1a1a' : 'var(--primary)');
     }, [isDark]);
 
-    // const [isScrollUp, setIsScrollUp] = useState<boolean>(false);
-
     return (
         <>
             <ContainerExp
                 bgColor={bgColor}
                 isDark={isDark}
-                className="hidden shadow-lg dark:shadow-lightShadowMd lg:flex mb-10 self-start relative group cursor-pointer text-xs sm:text-base w-full h-full rounded"
+                className="hidden shadow-lg dark:shadow-lightShadowMd lg:flex mb-10  relative group cursor-pointer text-xs sm:text-base w-full h-full rounded"
                 onMouseEnter={() => mouseEnterHandler(experience.id)}
                 onMouseLeave={mouseLeaveHandler}
                 onClick={() => clickHandler(experience)}>
@@ -68,8 +57,8 @@ const Exp: React.FC<IExp> = ({experience, setExperience}) => {
                             <span className="pr-4">{company}</span>
                             <LinkArrow />
                         </h1>
-                        <p className="text-sm xl:text-base">{about}</p>
-                        <ul className="flex flex-wrap text-sm xl:text-base">
+                        <p className="text-sm ">{about}</p>
+                        <ul className="flex flex-wrap text-sm ">
                             {technologiesUsed.map((tech, index) => (
                                 <li
                                     className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
@@ -97,8 +86,8 @@ const Exp: React.FC<IExp> = ({experience, setExperience}) => {
                             <span className="pr-4">{company}</span>
                             <LinkArrow />
                         </h1>
-                        <p className="text-sm lg:text-base pb-4">{about}</p>
-                        <ul className="flex flex-wrap text-sm lg:text-base">
+                        <p className="text-sm xl:text-base pb-4">{about}</p>
+                        <ul className="flex flex-wrap text-sm xl:text-base">
                             {technologiesUsed.map((tech, index) => (
                                 <li
                                     className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
@@ -136,7 +125,7 @@ const TitleExperience = () => {
     );
 };
 
-const Experience: React.FC<IExperience> = ({setExperience}) => {
+const Experience = () => {
     return (
         <div
             id="experience"
@@ -146,7 +135,7 @@ const Experience: React.FC<IExperience> = ({setExperience}) => {
             <TitleExperience />
             {experienceData.map((exp, index) => (
                 <Fragment key={index}>
-                    <Exp experience={exp} setExperience={setExperience} />
+                    <Exp experience={exp} />
                 </Fragment>
             ))}
         </div>

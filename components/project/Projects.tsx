@@ -3,21 +3,14 @@ import {projectData} from '../data';
 import {useAppDispatch, useAppSelector} from '../hook/useApp';
 import {projectActions} from '@/stores/Project';
 import styled from '@emotion/styled';
-import tinycolor from 'tinycolor2';
 import {LinkArrow} from '../UI/Icons';
 import {useRouter} from 'next/router';
 
 interface IProject {
     project: IProjectData;
-    setData: (data: IProjectData) => void;
 }
 
-interface IProjects {
-    setData: (data: IProjectData) => void;
-}
-
-const Project: React.FC<IProject> = ({project, setData}) => {
-    const [stateMouse, setStateMouse] = React.useState<Boolean>(false);
+const Project: React.FC<IProject> = ({project}) => {
     const [bgColor, setBgColor] = React.useState<string>('var(--primary)');
     const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
     const route = useRouter();
@@ -25,19 +18,14 @@ const Project: React.FC<IProject> = ({project, setData}) => {
     const {title, year, type, about, technologies} = project;
     const dispatch = useAppDispatch();
     const mouseEnterHandler = (id: String) => {
-        setStateMouse(true);
         const selectedProject = projectData.filter((project) => project.id === id);
         dispatch(projectActions.selectedProject(selectedProject));
     };
     const mouseLeaveHandler = () => {
-        setStateMouse(false);
         dispatch(projectActions.selectedProject([]));
     };
 
     const clickHandler = (project: IProjectData) => {
-        if (project) {
-            setData(project);
-        }
         route.push(project.website);
     };
 
@@ -50,17 +38,21 @@ const Project: React.FC<IProject> = ({project, setData}) => {
                 // style={{height: 'max-content'}}
                 isDark={isDark}
                 bgColor={bgColor}
-                className="hidden shadow-lg dark:shadow-lightShadowMd lg:flex relative max-h-[400px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
+                className="hidden shadow-lg dark:shadow-lightShadowMd lg:flex relative max-h-[250px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
                 onMouseEnter={() => mouseEnterHandler(project.id)}
                 onMouseLeave={mouseLeaveHandler}
                 onClick={() => clickHandler(project)}>
                 <ContainerContent
                     isDark={isDark}
                     className=" flex justify-between h-full w-full flex-row text-left dark:text-primary ">
-                    <div className="lg:p-2 dark:opacity-70 leading-6 text-sm basis-1/3 text-black dark:text-primary  transition-all">
+                    <div
+                        // style={{height: 'max-content'}}
+                        className="lg:p-2 dark:opacity-70 leading-6 text-sm basis-1/3 text-black dark:text-primary  transition-all">
                         {year}
                     </div>
-                    <div className="flex space-y-1 py-2  flex-col grow  text-left w-full dark:text-primary">
+                    <div
+                        // style={{height: 'max-content'}}
+                        className="flex space-y-1 py-2  flex-col grow  text-left w-full dark:text-primary">
                         <h1 className="flex group-hover:text-secondary font-bold transition-all">
                             <span className="pr-4">{title}</span>
                             <LinkArrow />
@@ -97,8 +89,8 @@ const Project: React.FC<IProject> = ({project, setData}) => {
                         </h1>
                         {type === 'personal' && <h2> Personal Project</h2>}
 
-                        <p className="text-sm lg:text-base pb-4">{about}</p>
-                        <ul className="flex flex-wrap text-sm lg:text-base">
+                        <p className="text-sm xl:text-base pb-4">{about}</p>
+                        <ul className="flex flex-wrap text-sm xl:text-base">
                             {technologies.primary.map((tech, index) => (
                                 <li
                                     className="mr-1 font-medium px-2 mb-1 rounded-full bg-[#dfe0e0] dark:text-black py-1"
@@ -136,27 +128,24 @@ const TitleProjects = () => {
     );
 };
 
-const Projects: React.FC<IProjects> = ({setData}) => {
+const Projects = () => {
     return (
         <div
             id="projects"
             className="pr-8  lg:px-12 xl:px-16  w-full h-full font-Montserrat tracking-wide space-y-2  
             relative z-[1] ">
             <TitleProjects />
-            <div className="flex flex-col h-full  lg:space-y-4  ">
-                {projectData.map((project, index) => (
-                    <Fragment key={index}>
-                        <Project project={project} setData={setData} />
-                    </Fragment>
-                ))}
-            </div>
+            {projectData.map((project, index) => (
+                <Fragment key={index}>
+                    <Project project={project} />
+                </Fragment>
+            ))}
             <div className="h-0 lg:h-10" />
         </div>
     );
 };
 
 const ContainerProject = styled.div<{bgColor: string; isDark: Boolean}>`
-    /* display: inline-block; */
     position: relative;
     width: 100%;
     height: 100%;
