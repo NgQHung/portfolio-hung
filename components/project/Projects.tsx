@@ -50,7 +50,7 @@ const Project: React.FC<IProject> = ({project, setData}) => {
                 // style={{height: 'max-content'}}
                 isDark={isDark}
                 bgColor={bgColor}
-                className="hidden lg:flex relative max-h-[400px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
+                className="hidden shadow-lg dark:shadow-lightShadowMd lg:flex relative max-h-[400px] group  cursor-pointer text-xs sm:text-base w-full h-full rounded"
                 onMouseEnter={() => mouseEnterHandler(project.id)}
                 onMouseLeave={mouseLeaveHandler}
                 onClick={() => clickHandler(project)}>
@@ -125,7 +125,7 @@ const TitleProjects = () => {
                 </div>
                 <span className="grow">Projects</span>
             </h1>
-            <div id="scrollHeaderProjects" className="lg:hidden  w-full border ">
+            <div id="scrollHeaderProjects" className="lg:hidden  w-full ">
                 <h1
                     className="px-8  py-[24px] lg:py-8  text-2xl sm:pt-10 font-bold text-left flex justify-end items-center
                       dark:text-primary">

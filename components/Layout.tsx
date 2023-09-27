@@ -13,7 +13,6 @@ const Layout: React.FC<ILayout> = ({children, className}) => {
     const onScrollHandler = () => {
         // const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
         const scrollTop = scrollRef.current.scrollTop;
-        console.log(`onScroll, myRef.scrollTop: ${scrollTop}`);
         var aboutHeader = document.getElementById('scrollHeaderAbout');
         var experienceHeader = document.getElementById('scrollHeaderExperience');
         var projectsHeader = document.getElementById('scrollHeaderProjects');
@@ -23,12 +22,12 @@ const Layout: React.FC<ILayout> = ({children, className}) => {
         } else aboutHeader?.classList.remove('headerSticky');
         if (scrollTop >= 888 && scrollTop <= 1226) {
             experienceHeader?.classList.add('headerSticky');
-        } else if (scrollTop >= 1226) {
-            experienceHeader?.classList.remove('headerSticky');
+        } else experienceHeader?.classList.remove('headerSticky');
+
+        if (scrollTop >= 1226 || scrollTop < 888) {
             projectsHeader?.classList.add('headerSticky');
-        } else {
-            projectsHeader?.classList.remove('headerSticky');
-        }
+        } else projectsHeader?.classList.remove('headerSticky');
+
         // scrollTop >= 400 && scrollTop <= 888 ? aboutHeader?.classList.add('headerSticky') : aboutHeader?.classList.remove('headerSticky');
     };
     return (

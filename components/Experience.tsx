@@ -52,7 +52,7 @@ const Exp: React.FC<IExp> = ({experience, setExperience}) => {
             <ContainerExp
                 bgColor={bgColor}
                 isDark={isDark}
-                className="hidden  lg:flex mb-10 self-start relative group cursor-pointer text-xs sm:text-base w-full h-full rounded"
+                className="hidden shadow-lg dark:shadow-lightShadowMd lg:flex mb-10 self-start relative group cursor-pointer text-xs sm:text-base w-full h-full rounded"
                 onMouseEnter={() => mouseEnterHandler(experience.id)}
                 onMouseLeave={mouseLeaveHandler}
                 onClick={() => clickHandler(experience)}>
@@ -154,7 +154,6 @@ const Experience: React.FC<IExperience> = ({setExperience}) => {
 };
 
 const ContainerExp = styled.div<{bgColor: string; isDark: Boolean}>`
-    /* display: inline-block; */
     position: relative;
     width: 100%;
     height: 100px;
