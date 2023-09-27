@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
-const Navbar = () => {
-    const [activeLink, setActiveLink] = useState<String>('');
 
-    const activeLinkHandler = (item: String) => {};
+interface INavbar {
+    activeLinkName: String;
+}
+
+const Navbar: React.FC<INavbar> = (props) => {
+    const [activeLink, setActiveLink] = useState<String>('');
 
     // active link and scroll handler
     const handler = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, item: String) => {
         if (item !== activeLink) {
             setActiveLink(item);
         }
-
         // first prevent the default behavior
         e.preventDefault();
         // get the href and remove everything before the hash (#)
@@ -22,6 +24,11 @@ const Navbar = () => {
             behavior: 'smooth',
         });
     };
+
+    useEffect(() => {
+        setActiveLink(props.activeLinkName);
+    }, [props.activeLinkName]);
+
     return (
         <ul className="z-[1] pt-20 hidden lg:flex flex-col justify-between font-bold text-black dark:text-primary">
             <Link

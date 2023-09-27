@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 // import {useFollowPointer} from './hook/UseFollowPointer';
 import {useAppSelector} from './hook/useApp';
 // import useDeviceSize from './hook/useDeviceSize';
@@ -10,21 +10,22 @@ interface ILayout {
 
 const Layout: React.FC<ILayout> = ({children, className}) => {
     // const scrollRef = useRef<any>();
-    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
+    // const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
     // const [width] = useDeviceSize();
 
     // const onScrollHandler = () => {
     //     // const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
-    //     const scrollTop = scrollRef.current.scrollTop;
+    //     // const scrollTop = scrollRef.current.scrollTop;
     //     var aboutHtsHeader = document.getElementById('scrollHeaderProjects');
-    //     console.log(` scrollTop: ${scrollTop}`);
+    //     console.log(window);
+    //     // console.log(window);
     // };
 
-    useEffect(() => {
-        if (!isDark) {
-            document.getElementById('scrollHeaderProjects')?.classList.remove('darkHeaderSticky');
-        }
-    }, [isDark]);
+    // useEffect(() => {
+    //     if (!isDark) {
+    //         document.getElementById('scrollHeaderProjects')?.classList.remove('darkHeaderSticky');
+    //     }
+    // }, [isDark]);
     return (
         <div className={`h-screen w-screen bg-primary p-12 ${className} dark:bg-dark`}>
             <div

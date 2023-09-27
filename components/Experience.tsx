@@ -116,7 +116,7 @@ const TitleExperience = () => {
             </h1>
             <div
                 id="scrollHeaderExperience"
-                className="lg:hidden h-full sticky top-0 z-20 w-screen left-0 bg-primary opacity:0.9  dark:bg-[#1a1a1a] dark:shadow-lg dark:opacity-100   ">
+                className="lg:hidden h-full sticky top-0 z-20 w-full left-0 bg-primary opacity:0.9  dark:bg-[#1a1a1a] dark:shadow-lg dark:opacity-100   ">
                 <h1
                     className=" px-8  py-[24px] lg:py-8 text-2xl lg:pt-10 font-bold text-left flex justify-end items-center
                   dark:text-primary">
