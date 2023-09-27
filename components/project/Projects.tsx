@@ -132,7 +132,7 @@ const Projects = () => {
     return (
         <div
             id="projects"
-            className="pr-8  lg:px-12 xl:px-16  w-full h-full font-Montserrat tracking-wide space-y-2  
+            className=" lg:pr-8  lg:px-12 xl:px-16  w-full h-full font-Montserrat tracking-wide space-y-2  
             relative z-[1] ">
             <TitleProjects />
             {projectData.map((project, index) => (
