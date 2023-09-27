@@ -61,13 +61,13 @@ const TerminalTextEffect = () => {
         }
         if (isDark === undefined) return;
         if (!isDark) {
-            consoleText(['Hello World.', "I'm Hung", 'Welcome!'], 'text', [
+            consoleText(['Hello World.', "I'm Hung", 'Welcome!!!'], 'text', [
                 '#2c6ccd',
                 '#5C2D91',
                 '#f0122d',
             ]);
         } else {
-            consoleText(['Hello World.', "I'm Hung", 'Welcome!'], 'text', [
+            consoleText(['Hello World.', "I'm Hung", 'Welcome!!!'], 'text', [
                 '#fdf8f0',
                 '#bbddff',
                 '#f0122d',
