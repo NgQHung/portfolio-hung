@@ -1,5 +1,7 @@
-import React, {useRef, useState} from 'react';
-import {useFollowPointer} from './hook/UseFollowPointer';
+import React, {useEffect} from 'react';
+// import {useFollowPointer} from './hook/UseFollowPointer';
+import {useAppSelector} from './hook/useApp';
+// import useDeviceSize from './hook/useDeviceSize';
 
 interface ILayout {
     children: React.ReactNode;
@@ -7,29 +9,22 @@ interface ILayout {
 }
 
 const Layout: React.FC<ILayout> = ({children, className}) => {
-    const scrollRef = useRef<any>();
-    const [scrollPosition, setScrollPosition] = useState(0);
+    // const scrollRef = useRef<any>();
+    const isDark = useAppSelector((state) => state.themeSwitcher.isDark);
+    // const [width] = useDeviceSize();
 
-    const onScrollHandler = () => {
-        // const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
-        const scrollTop = scrollRef.current.scrollTop;
-        var aboutHeader = document.getElementById('scrollHeaderAbout');
-        var experienceHeader = document.getElementById('scrollHeaderExperience');
-        var projectsHeader = document.getElementById('scrollHeaderProjects');
-        setScrollPosition(scrollTop);
-        if (scrollTop >= 400 && scrollTop <= 888) {
-            aboutHeader?.classList.add('headerSticky');
-        } else aboutHeader?.classList.remove('headerSticky');
-        if (scrollTop >= 888 && scrollTop <= 1226) {
-            experienceHeader?.classList.add('headerSticky');
-        } else experienceHeader?.classList.remove('headerSticky');
+    // const onScrollHandler = () => {
+    //     // const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
+    //     const scrollTop = scrollRef.current.scrollTop;
+    //     var aboutHtsHeader = document.getElementById('scrollHeaderProjects');
+    //     console.log(` scrollTop: ${scrollTop}`);
+    // };
 
-        if (scrollTop >= 1226 || scrollTop < 888) {
-            projectsHeader?.classList.add('headerSticky');
-        } else projectsHeader?.classList.remove('headerSticky');
-
-        // scrollTop >= 400 && scrollTop <= 888 ? aboutHeader?.classList.add('headerSticky') : aboutHeader?.classList.remove('headerSticky');
-    };
+    useEffect(() => {
+        if (!isDark) {
+            document.getElementById('scrollHeaderProjects')?.classList.remove('darkHeaderSticky');
+        }
+    }, [isDark]);
     return (
         <div className={`h-screen w-screen bg-primary p-12 ${className} dark:bg-dark`}>
             <div
@@ -37,8 +32,8 @@ const Layout: React.FC<ILayout> = ({children, className}) => {
                 overflow-hidden
             ">
                 <div
-                    ref={scrollRef}
-                    onScroll={onScrollHandler}
+                    // ref={scrollRef}
+                    // onScroll={onScrollHandler}
                     className="h-full w-full sticky overflow-scroll scrollbar_hidden lg:relative">
                     {children}
                 </div>
