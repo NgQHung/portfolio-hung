@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useState, RefObject, useEffect} from 'react';
 
 export function useFollowPointer(ref: RefObject<HTMLElement>) {

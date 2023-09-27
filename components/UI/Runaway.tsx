@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import BouncingBall from './BouncingBall';
 
-const getRandomNumber = (num: number) => {
-    return Math.floor(Math.random() * (num + 1));
-};
+// const getRandomNumber = (num: number) => {
+//     return Math.floor(Math.random() * (num + 1));
+// };
 
 // -3 , 697
 function randomNumber(min: number, max: number) {
@@ -13,7 +14,7 @@ function randomNumber(min: number, max: number) {
 const Runaway = () => {
     const [cursorX, setCursorX] = useState(0);
     const [translateX, setTranslateX] = useState(0);
-    const [translateY, setTranslateY] = useState(0);
+    // const [translateY, setTranslateY] = useState(0);
     const [point, setPoint] = useState({randX: 0, randY: 0});
 
     const handleMouseOver = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from '@emotion/styled';
 import {animate, motion, useMotionTemplate, useMotionValue, useTransform} from 'framer-motion';
 import {useEffect, useRef, useState} from 'react';
