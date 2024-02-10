@@ -74,7 +74,7 @@ const Project: React.FC<IProject> = ({project}) => {
             </ContainerProject>
             <div
                 style={{height: 'max-content'}}
-                className="flex p-8 lg:hidden relative max-h-[400px] group  cursor-pointer text-base w-full h-full rounded"
+                className="flex p-4 sm:p-8 lg:hidden relative max-h-[400px] group  cursor-pointer text-base w-full h-full rounded"
                 onMouseEnter={() => mouseEnterHandler(project.id)}
                 onMouseLeave={mouseLeaveHandler}
                 onClick={() => clickHandler(project)}>
@@ -121,7 +121,7 @@ const TitleProjects = () => {
                 id="scrollHeaderProjects"
                 className="lg:hidden sticky top-0 z-20 w-full left-0 bg-primary opacity:0.9  dark:bg-[#1a1a1a] dark:shadow-lg dark:opacity-100   ">
                 <h1
-                    className="px-8 py-[24px] lg:py-8  text-2xl sm:pt-10 font-bold text-left flex justify-end items-center
+                    className="px-4 sm:px-8 py-[16px] sm:py-[24px] lg:py-8  text-2xl sm:pt-10 font-bold text-left flex justify-end items-center
                       dark:text-primary">
                     <span className="grow">Projects</span>
                 </h1>

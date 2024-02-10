@@ -12,13 +12,12 @@ const DarkLightButton = () => {
 
     useEffect(() => {
         const isDark = document.querySelector('html')?.classList.contains('dark');
-
         dispatch(themeSwitcherActions.themeSwitcher(isDark));
     }, [mode]);
 
     return (
         <div
-            className="hidden xss:flex flex-col h-auto w-8 absolute bottom-20 left-4 dark:bg-primary z-[1] 
+            className="hidden xss:flex flex-col h-auto w-6 sm:w-8 absolute bottom-20 left-0 sm:left-4 dark:bg-primary z-[1] 
         dark:rounded-l-xl py-2">
             <button className="inline-block mb-5" onClick={() => setMode('dark')}>
                 <span

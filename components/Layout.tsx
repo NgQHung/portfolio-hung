@@ -27,7 +27,7 @@ const Layout: React.FC<ILayout> = ({children, className}) => {
     //     }
     // }, [isDark]);
     return (
-        <div className={`h-screen w-screen bg-primary p-12 ${className} dark:bg-dark`}>
+        <div className={`h-screen w-screen bg-primary p-6 sm:p-12  ${className} dark:bg-dark`}>
             <div
                 className="border border-solid  h-full w-full relative border-black dark:border-primary
                 overflow-hidden

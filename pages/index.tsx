@@ -57,7 +57,7 @@ export default function Home() {
                 <DynamicLayout>
                     <div
                         className="relative max-h-[400px] lg:h-full lg:absolute inline-block lg:flex lg:flex-col  top-0 left-0 lg:justify-between lg:items-start 
-                        py-16 px-8 lg:px-12 xl:px-16 lg:py-16 max-w-full lg:max-w-[50%]">
+                        py-16 px-4 lg:px-12 xl:px-16 lg:py-16 max-w-full lg:max-w-[50%]">
                         <DynamicIntroduce setProfileOpen={setProfileOpen} />
                         <DynamicNavbar activeLinkName={activeLinkName} />
                         <DynamicLinks />

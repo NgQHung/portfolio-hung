@@ -67,10 +67,8 @@ export const EmailIcon: React.FC<IIcons> = (props) => (
 export const SunIcon: React.FC<IIcons> = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
         viewBox="0 0 24 24"
-        className={`w-full h-auto ${props.className}`}>
+        className={`w-full h-auto ${props.className} w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]`}>
         <g
             fill="none"
             stroke="currentColor"
@@ -198,10 +196,8 @@ export const SunIcon: React.FC<IIcons> = (props) => (
 export const MoonIcon: React.FC<IIcons> = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
         viewBox="0 0 24 24"
-        className={`w-full h-auto ${props.className}`}>
+        className={`w-full h-auto ${props.className} w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]`}>
         <rect x="0" y="0" width="24" height="24" fill="rgba(255, 255, 255, 0)" />
         <g
             fill="none"

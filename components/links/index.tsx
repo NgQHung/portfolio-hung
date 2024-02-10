@@ -46,7 +46,7 @@ const Links = () => {
 const WrapperIcons: React.FC<IWrapper> = ({children, className}) => {
     return (
         <div
-            className={`absolute bottom-0 left-0 items-end m-8  flex justify-between  space-x-3 md:relative md:items-center md:m-0 z-[1] ${className}`}>
+            className={`absolute bottom-0 left-0 items-end my-8 mx-4 sm:m-8 flex justify-between  space-x-3 md:relative md:items-center md:m-0 z-[1] ${className}`}>
             {children}
         </div>
     );
