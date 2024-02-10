@@ -19,7 +19,7 @@ const DarkLightButton = () => {
         <div
             className="hidden xss:flex flex-col h-auto w-6 sm:w-8 absolute bottom-20 left-0 sm:left-4 dark:bg-primary z-[1] 
         dark:rounded-l-xl py-2">
-            <button className="inline-block mb-5" onClick={() => setMode('dark')}>
+            <button className="inline-block mb-5 text-center" onClick={() => setMode('dark')}>
                 <span
                     className={`h-3 w-3 inline-block border border-solid border-black p-1
                     bg-transparent dark:bg-dark dark:border-dark
@@ -27,7 +27,7 @@ const DarkLightButton = () => {
                 />
                 <SunIcon className={'fill-black'} />
             </button>
-            <button className="inline-block" onClick={() => setMode('light')}>
+            <button className="inline-block text-center" onClick={() => setMode('light')}>
                 <span
                     className={`h-3 w-3 inline-block border border-solid border-black p-1
                     bg-dark dark:bg-transparent dark:border-dark

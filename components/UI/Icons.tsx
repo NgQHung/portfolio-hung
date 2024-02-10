@@ -68,7 +68,7 @@ export const SunIcon: React.FC<IIcons> = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        className={`w-full h-auto ${props.className} w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]`}>
+        className={`w-full h-auto ${props.className} w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] inline-block`}>
         <g
             fill="none"
             stroke="currentColor"
@@ -197,7 +197,7 @@ export const MoonIcon: React.FC<IIcons> = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        className={`w-full h-auto ${props.className} w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]`}>
+        className={`w-full h-auto ${props.className} w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] inline-block`}>
         <rect x="0" y="0" width="24" height="24" fill="rgba(255, 255, 255, 0)" />
         <g
             fill="none"
