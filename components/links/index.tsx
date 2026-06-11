@@ -16,7 +16,7 @@ interface ICustomLink {
 
 const Links = () => {
   return (
-    <div className="flex mt-8">
+    <div className="flex mt-10 lg:mt-8">
       <WrapperIcons className="hidden dark:flex">
         <ContainerLink href="https://www.linkedin.com/in/hung-nguyen-quang-9046aa199/">
           <LinkedInIcon color="none" className="w-6" />
